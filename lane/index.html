@@ -1,1 +1,300 @@
-PLACEHOLDER
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TRU GitHub Lane</title>
+<style>
+:root{color-scheme:light;--bg:#edf0f3;--panel:#f8fafb;--ink:#14202b;--mut:#5d6b79;--line:#cfd7de;--acc:#0f5c8c;--ok:#1d7a4d;--bad:#b3261e;--mark:#ffe58a;--code:#e4e9ee}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#10161c;--panel:#172029;--ink:#e3e9ee;--mut:#8b9aa8;--line:#2a3744;--acc:#6ab7e8;--ok:#5fcf9a;--bad:#ff8a80;--mark:#5b4a0f;--code:#223040}}
+:root[data-theme=light]{color-scheme:light;--bg:#edf0f3;--panel:#f8fafb;--ink:#14202b;--mut:#5d6b79;--line:#cfd7de;--acc:#0f5c8c;--ok:#1d7a4d;--bad:#b3261e;--mark:#ffe58a;--code:#e4e9ee}
+:root[data-theme=dark]{color-scheme:dark;--bg:#10161c;--panel:#172029;--ink:#e3e9ee;--mut:#8b9aa8;--line:#2a3744;--acc:#6ab7e8;--ok:#5fcf9a;--bad:#ff8a80;--mark:#5b4a0f;--code:#223040}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+header h1{font-size:16px;margin:0;font-weight:700;letter-spacing:.01em}
+.btn{background:transparent;border:1px solid var(--line);border-radius:6px;padding:5px 10px}
+.btn:hover{border-color:var(--acc)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:var(--panel)}
+#ledger{flex:1;min-width:240px;font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ledger b{color:var(--ink);font-weight:600}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+main{flex:1;display:grid;grid-template-columns:300px 1fr;min-height:0}
+aside{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+aside .top{padding:10px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+select,input[type=search]{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:12px;padding:1px 9px;font-size:12px;color:var(--mut)}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--panel)}
+#tree{overflow:auto;padding:6px 6px 24px;flex:1}
+details{margin-left:10px}
+summary{cursor:pointer;color:var(--mut);padding:2px 4px;border-radius:4px}
+.fi{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:none;border:0;border-left:2px solid transparent;padding:3px 8px;border-radius:0 4px 4px 0}
+.fi:hover{background:var(--bg)}
+.fi.on{border-left-color:var(--acc);background:var(--bg);font-weight:600}
+.fi i{font-style:normal;font-size:11px;color:var(--mut)}
+section#view{overflow:auto;padding:20px 28px 60px;min-width:0}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.bar input{flex:1;min-width:200px;max-width:520px}
+.meta{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--mut);margin:0 0 14px;word-break:break-all}
+.doc{max-width:74ch;font:17px/1.65 Georgia,"Iowan Old Style","Palatino Linotype",serif}
+.doc h1,.doc h2,.doc h3,.doc h4{font-family:system-ui,sans-serif;line-height:1.25;margin:1.5em 0 .5em}
+.doc code{background:var(--code);padding:1px 5px;border-radius:4px;font:.85em ui-monospace,Menlo,Consolas,monospace}
+.doc blockquote{margin:1em 0;padding:2px 14px;border-left:3px solid var(--line);color:var(--mut)}
+.lnk{color:var(--acc);text-decoration:underline dotted;cursor:help}
+pre{background:var(--code);padding:12px 14px;border-radius:6px;overflow:auto;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+mark{background:var(--mark);color:inherit;border-radius:2px}
+.hit{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.hit:hover{border-color:var(--acc)}
+.hit small{color:var(--mut)}
+.hit p{margin:4px 0 0;font-size:14px;word-break:break-word}
+table{border-collapse:collapse;font-size:13px}
+td,th{border-bottom:1px solid var(--line);padding:3px 12px 3px 0;text-align:left;vertical-align:top}
+.empty{max-width:52ch;color:var(--mut)}
+#drop{position:fixed;inset:0;background:color-mix(in srgb,var(--acc) 18%,transparent);border:3px dashed var(--acc);display:none;align-items:center;justify-content:center;font-size:20px;z-index:9}
+@media (max-width:760px){main{grid-template-columns:1fr;grid-template-rows:40vh 1fr}aside{border-right:0;border-bottom:1px solid var(--line)}section#view{padding:16px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>TRU GitHub Lane</h1>
+  <div id="ledger">No pack loaded.</div>
+  <label class="btn pri" tabindex="0" id="loadLbl">Load packs<input id="file" type="file" accept=".json,application/json" multiple hidden></label>
+  <button class="btn" id="theme" title="Toggle light/dark">Theme</button>
+</header>
+<main>
+  <aside>
+    <div class="top">
+      <select id="packSel" aria-label="Active pack"></select>
+      <div class="chips" id="chips"></div>
+      <button class="btn" id="rm">Remove this pack</button>
+    </div>
+    <nav id="tree" aria-label="Files"></nav>
+  </aside>
+  <section id="view"></section>
+</main>
+<div id="drop">Drop tru-github-pack .json files to load</div>
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&","<":"<",">":">",'"':"""}[c]));
+const KINDS=["readme","manifest","config","doc","knowledge","extra"];
+const S={packs:[],active:null,file:null,kinds:new Set(),q:"",raw:false,ver:{}};
+
+/* ---------- storage (IndexedDB; the lane still works if it is blocked) ---------- */
+const dbp=new Promise(res=>{try{const r=indexedDB.open("tru-github-lane",1);r.onupgradeneeded=()=>r.result.createObjectStore("packs",{keyPath:"id"});r.onsuccess=()=>res(r.result);r.onerror=()=>res(null)}catch(e){res(null)}});
+async function idb(mode,fn){const db=await dbp;if(!db)return null;return new Promise(res=>{try{const t=db.transaction("packs",mode);const req=fn(t.objectStore("packs"));t.oncomplete=()=>res(req&&"result" in req?req.result:true);t.onerror=()=>res(null)}catch(e){res(null)}})}
+
+/* ---------- pack handling ---------- */
+function normalize(raw,name){
+  const src=raw.source||{};
+  const owner=src.owner||raw.owner||"unknown";
+  const repo=src.repo||raw.repo||name.replace(/\.json$/i,"");
+  let files=Array.isArray(raw.files)?raw.files:[];
+  if(!files.length&&typeof raw.readme==="string")files=[{path:"README.md",kind:"readme",text:raw.readme}];
+  const enc=new TextEncoder();
+  files=files.filter(f=>f&&typeof f.path==="string"&&typeof f.text==="string")
+    .map(f=>({kind:"doc",...f,size:f.size??enc.encode(f.text).length}));
+  const sha=String(src.commit_sha||raw.commit||"").slice(0,7)||"nosha";
+  const meta={...raw};delete meta.files;
+  return {id:`${owner}/${repo}@${sha}`,owner,repo,sha,files,meta};
+}
+const tok=s=>s.toLowerCase().match(/[\p{L}\p{N}_]{2,}/gu)||[];
+function index(p){
+  const df=new Map();let tot=0;
+  p.docs=p.files.map((f,i)=>{
+    const tf=new Map(),ts=tok(f.text);
+    for(const t of ts)tf.set(t,(tf.get(t)||0)+1);
+    for(const t of tok(f.path))tf.set(t,(tf.get(t)||0)+5);
+    tot+=ts.length;for(const t of tf.keys())df.set(t,(df.get(t)||0)+1);
+    return {i,tf,len:ts.length||1};
+  });
+  p.df=df;p.avg=(tot/Math.max(1,p.files.length))||1;
+}
+async function addPack(raw,name,persist=true){
+  const p=normalize(raw,name);
+  if(!p.files.length){msg(`${name}: no readable files in this pack.`,true);return}
+  index(p);
+  S.packs=S.packs.filter(x=>x.id!==p.id).concat(p);
+  S.active=p.id;S.file=p.files[0];
+  if(persist)await idb("readwrite",s=>s.put({id:p.id,owner:p.owner,repo:p.repo,sha:p.sha,files:p.files,meta:p.meta}));
+}
+const act=()=>S.packs.find(p=>p.id===S.active);
+
+/* ---------- search (BM25-lite, path hits weighted) ---------- */
+function search(q){
+  const qt=[...new Set(tok(q))];if(!qt.length)return {qt,res:[]};
+  const res=[];
+  for(const p of S.packs){const N=p.files.length;
+    for(const d of p.docs){const f=p.files[d.i];
+      if(S.kinds.size&&!S.kinds.has(f.kind))continue;
+      let s=0;
+      for(const t of qt){const n=d.tf.get(t);if(!n)continue;const df=p.df.get(t);
+        s+=Math.log(1+(N-df+.5)/(df+.5))*n*2.5/(n+1.5*(.25+.75*d.len/p.avg))}
+      if(s>0)res.push({p,f,s});}}
+  return {qt,res:res.sort((a,b)=>b.s-a.s).slice(0,60)};
+}
+function snippet(text,qt){
+  const low=text.toLowerCase();let at=-1;
+  for(const t of qt){const i=low.indexOf(t);if(i>=0&&(at<0||i<at))at=i}
+  if(at<0)at=0;
+  const a=Math.max(0,at-80),b=Math.min(text.length,at+170);
+  const re=new RegExp("("+qt.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")","gi");
+  return (a?"\u2026":"")+text.slice(a,b).split(re).map((x,i)=>i%2?`<mark>${esc(x)}</mark>`:esc(x)).join("")+(b<text.length?"\u2026":"");
+}
+
+/* ---------- minimal, safe markdown (escape first, no raw HTML, links are inert) ---------- */
+function md(src){
+  const L=src.replace(/\r/g,"").split("\n"),o=[];let i=0;
+  const inl=s=>esc(s).replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\*\*([^*]+)\*\*/g,"<b>$1</b>")
+    .replace(/\[([^\]]+)\]\(([^)]*)\)/g,(m,t,u)=>`<span class="lnk" title="${u}">${t}</span>`);
+  const stop=/^(```|#{1,6}\s|\s*[-*]\s|>)/;
+  while(i<L.length){const l=L[i];let m;
+    if(/^```/.test(l)){const b=[];i++;while(i<L.length&&!/^```/.test(L[i]))b.push(L[i++]);i++;o.push("<pre>"+esc(b.join("\n"))+"</pre>");continue}
+    if(m=l.match(/^(#{1,6})\s+(.*)/)){o.push(`<h${m[1].length}>${inl(m[2])}</h${m[1].length}>`);i++;continue}
+    if(/^\s*[-*]\s+/.test(l)){const b=[];while(i<L.length&&/^\s*[-*]\s+/.test(L[i]))b.push("<li>"+inl(L[i++].replace(/^\s*[-*]\s+/,""))+"</li>");o.push("<ul>"+b.join("")+"</ul>");continue}
+    if(/^>/.test(l)){const b=[];while(i<L.length&&/^>/.test(L[i]))b.push(L[i++].replace(/^>\s?/,""));o.push("<blockquote>"+inl(b.join(" "))+"</blockquote>");continue}
+    if(!l.trim()){i++;continue}
+    const b=[L[i++]];while(i<L.length&&L[i].trim()&&!stop.test(L[i]))b.push(L[i++]);
+    o.push("<p>"+inl(b.join(" "))+"</p>");
+  }
+  return o.join("");
+}
+
+/* ---------- integrity ---------- */
+async function sha256(t){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+async function verifyPack(p){
+  if(!(window.crypto&&crypto.subtle))return {state:"unavailable"};
+  let ok=0,bad=0,none=0;const badPaths=[];
+  for(const f of p.files){
+    if(!f.sha256){none++;continue}
+    if(await sha256(f.text)===f.sha256)ok++;else{bad++;badPaths.push(f.path)}
+  }
+  let digest="none";
+  if(p.meta.pack_digest&&!none){
+    const lines=[...p.files].sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0).map(f=>f.path+"\t"+f.sha256).join("\n");
+    digest=(await sha256(lines))===p.meta.pack_digest?"ok":"MISMATCH";
+  }
+  return {state:bad||digest==="MISMATCH"?"bad":"ok",ok,bad,none,digest,badPaths};
+}
+
+/* ---------- rendering ---------- */
+function msg(t,bad){const v=$("#view");v.insertAdjacentHTML("afterbegin",`<p class="${bad?"bad":"ok"}">${esc(t)}</p>`)}
+function ledger(){
+  const p=act();
+  if(!p){$("#ledger").innerHTML="No pack loaded.";return}
+  const v=S.ver[p.id];
+  const vs=!v?"not verified":v.state==="unavailable"?"verify unavailable here":v.state==="ok"?`<span class="ok">verified ${v.ok}/${p.files.length}${v.none?`, ${v.none} unhashed`:""}</span>`:`<span class="bad">MISMATCH in ${v.bad} file(s)</span>`;
+  $("#ledger").innerHTML=`<b>${esc(p.owner)}/${esc(p.repo)}</b> @ ${esc(p.sha)} \u00b7 ${p.files.length} files \u00b7 ${vs}`;
+}
+function tree(files){const r={d:{},f:[]};for(const f of files){let n=r;for(const s of f.path.split("/").slice(0,-1))n=n.d[s]??={d:{},f:[]};n.f.push(f)}return r}
+function drawTree(n,depth){
+  let h="";
+  for(const k of Object.keys(n.d).sort())h+=`<details${depth<1?" open":""}><summary>${esc(k)}</summary>${drawTree(n.d[k],depth+1)}</details>`;
+  for(const f of n.f.sort((a,b)=>a.path.localeCompare(b.path)))h+=`<button class="fi${f===S.file?" on":""}" data-p="${esc(f.path)}"><span>${esc(f.path.split("/").pop())}</span><i>${esc(f.kind)}</i></button>`;
+  return h;
+}
+function side(){
+  $("#packSel").innerHTML=S.packs.map(p=>`<option value="${esc(p.id)}"${p.id===S.active?" selected":""}>${esc(p.id)}</option>`).join("");
+  $("#chips").innerHTML=KINDS.map(k=>`<button class="chip" aria-pressed="${S.kinds.has(k)}" data-k="${k}">${k}</button>`).join("");
+  const p=act();
+  const files=p?p.files.filter(f=>!S.kinds.size||S.kinds.has(f.kind)):[];
+  $("#tree").innerHTML=files.length?drawTree(tree(files),0):'<p class="empty" style="padding:8px">No files to show.</p>';
+  $("#rm").style.display=p?"":"none";
+}
+function viewFile(){
+  const p=act(),f=S.file;
+  if(!p||!f)return empty();
+  const isMd=/\.(md|markdown)$/i.test(f.path);
+  const body=isMd&&!S.raw?`<article class="doc">${md(f.text)}</article>`:`<pre>${esc(f.text)}</pre>`;
+  $("#view").innerHTML=searchBar()+`<h2 style="margin:0 0 4px">${esc(f.path)}</h2>
+  <p class="meta">${esc(f.kind)} \u00b7 ${f.size} bytes${f.git_sha?` \u00b7 git ${esc(String(f.git_sha).slice(0,10))}`:""}${f.sha256?` \u00b7 sha256 ${esc(f.sha256.slice(0,16))}\u2026`:""}</p>
+  <div class="bar">${isMd?`<button class="btn" id="rawBtn">${S.raw?"Show rendered":"Show source"}</button>`:""}<button class="btn" id="provBtn">Provenance</button></div>${body}`;
+  wire();
+}
+function empty(){
+  $("#view").innerHTML=searchBar()+`<div class="empty"><h2>Inspect a GitHub pack offline</h2><p>Load one or more <code>*.tru-github-pack.json</code> files with the button above, or drop them anywhere on this page. Packs are kept in this browser so they are here next time, with no network needed.</p><p>Build a pack with <code>python tools/github_pull.py owner/repo</code>.</p></div>`;
+  wire();
+}
+function searchBar(){return `<div class="bar"><input type="search" id="q" placeholder="Search all loaded packs   ( / )" value="${esc(S.q)}" aria-label="Search"></div>`}
+function viewResults(){
+  const {qt,res}=search(S.q);
+  let h=searchBar();
+  if(!res.length)h+=`<p class="empty">No matches for \u201c${esc(S.q)}\u201d${S.kinds.size?" in the selected kinds":""}. Nothing in the loaded packs says this; it may simply not have been extracted (see Provenance \u2192 skipped).</p>`;
+  else h+=`<p class="meta">${res.length} result${res.length>1?"s":""}</p>`+res.map((r,i)=>`<button class="hit" data-i="${i}"><b>${esc(r.f.path)}</b> <small>${esc(r.p.id)} \u00b7 ${esc(r.f.kind)}</small><p>${snippet(r.f.text,qt)}</p></button>`).join("");
+  $("#view").innerHTML=h;
+  $("#view").querySelectorAll(".hit").forEach(b=>b.onclick=()=>{const r=res[+b.dataset.i];S.active=r.p.id;S.file=r.f;S.q="";render()});
+  wire();
+}
+async function viewProv(){
+  const p=act();if(!p)return;
+  const m=p.meta,s=m.source||{},pv=m.provenance||{},st=m.stats||{};
+  const row=(k,v)=>v==null||v===""?"":`<tr><th>${esc(k)}</th><td>${esc(typeof v==="object"?JSON.stringify(v):v)}</td></tr>`;
+  const sk=Array.isArray(m.skipped)?m.skipped:[];
+  $("#view").innerHTML=searchBar()+`<h2 style="margin:0 0 10px">Provenance</h2>
+  <div class="bar"><button class="btn pri" id="verBtn">Verify hashes</button><button class="btn" id="backBtn">Back to files</button><span id="verOut"></span></div>
+  <table>${row("repository",s.url||`${p.owner}/${p.repo}`)}${row("ref",s.ref)}${row("commit",s.commit_sha)}${row("tree",s.tree_sha)}${row("license",s.license)}${row("description",s.description)}${row("pushed at",s.pushed_at)}${row("pack version",m.version)}${row("generated",m.generated_at)}${row("generator",m.generator)}${row("method",pv.method)}${row("authenticated",pv.authenticated)}${row("tree truncated",pv.tree_truncated)}${row("limits",pv.limits)}${row("pack digest",m.pack_digest)}${row("stats",st)}</table>
+  ${(m.warnings||[]).length?`<h3>Warnings</h3><ul>${m.warnings.map(w=>`<li class="bad">${esc(w)}</li>`).join("")}</ul>`:""}
+  <h3>Not included (${sk.length} listed)</h3>${sk.length?`<table>${sk.slice(0,300).map(x=>`<tr><td>${esc(x.path)}</td><td>${esc(x.reason)}</td></tr>`).join("")}</table>${sk.length>300?"<p class=meta>\u2026first 300 shown</p>":""}`:"<p class=meta>Nothing was listed as skipped.</p>"}
+  <p class="meta">Code, lockfiles, binaries and build output are counted, not listed: ${esc(JSON.stringify(st.noise_counts||{}))}</p>`;
+  wire();
+  $("#backBtn").onclick=()=>{S.q="";render()};
+  $("#verBtn").onclick=async()=>{
+    $("#verOut").textContent="Checking\u2026";
+    const v=S.ver[p.id]=await verifyPack(p);ledger();
+    $("#verOut").innerHTML=v.state==="unavailable"?'<span class="bad">crypto.subtle is not available in this context.</span>':
+      `<span class="${v.state==="ok"?"ok":"bad"}">${v.ok} ok, ${v.bad} mismatch, ${v.none} without hash; pack digest: ${v.digest}</span>${v.badPaths.length?"<br>"+v.badPaths.map(esc).join("<br>"):""}`;
+  };
+}
+function wire(){
+  const q=$("#q");if(!q)return;
+  let t;q.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{S.q=q.value;S.q.trim()?viewResults():viewFile();const n=$("#q");n.focus();n.setSelectionRange(n.value.length,n.value.length)},140)};
+  const r=$("#rawBtn");if(r)r.onclick=()=>{S.raw=!S.raw;viewFile()};
+  const pb=$("#provBtn");if(pb)pb.onclick=viewProv;
+}
+function render(){side();ledger();S.q.trim()?viewResults():viewFile()}
+
+/* ---------- events ---------- */
+$("#tree").onclick=e=>{const b=e.target.closest(".fi");if(!b)return;const f=act().files.find(x=>x.path===b.dataset.p);if(f){S.file=f;S.q="";render()}};
+$("#chips").onclick=e=>{const c=e.target.closest(".chip");if(!c)return;const k=c.dataset.k;S.kinds.has(k)?S.kinds.delete(k):S.kinds.add(k);render()};
+$("#packSel").onchange=e=>{S.active=e.target.value;S.file=act().files[0];S.q="";render()};
+$("#rm").onclick=async()=>{
+  const p=act();if(!p||!confirm(`Remove ${p.id} from this browser?`))return;
+  await idb("readwrite",s=>s.delete(p.id));
+  S.packs=S.packs.filter(x=>x!==p);const n=S.packs[0];S.active=n?n.id:null;S.file=n?n.files[0]:null;render();
+};
+$("#theme").onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark"};
+async function loadFiles(list){
+  for(const f of list){
+    try{await addPack(JSON.parse(await f.text()),f.name)}
+    catch(e){render();msg(`${f.name}: not a valid pack (${e.message}).`,true)}
+  }
+  render();
+}
+$("#file").onchange=async e=>{await loadFiles([...e.target.files]);e.target.value=""};
+$("#loadLbl").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("#file").click()}};
+let dc=0;
+addEventListener("dragenter",e=>{e.preventDefault();dc++;$("#drop").style.display="flex"});
+addEventListener("dragleave",e=>{dc=Math.max(0,dc-1);if(!dc)$("#drop").style.display="none"});
+addEventListener("dragover",e=>e.preventDefault());
+addEventListener("drop",async e=>{e.preventDefault();dc=0;$("#drop").style.display="none";await loadFiles([...e.dataTransfer.files].filter(f=>/\.json$/i.test(f.name)))});
+addEventListener("keydown",e=>{if(e.key==="/"&&!/INPUT|SELECT/.test(document.activeElement.tagName)){e.preventDefault();const q=$("#q");if(q)q.focus()}});
+
+/* ---------- boot ---------- */
+(async()=>{
+  const saved=await idb("readonly",s=>s.getAll());
+  if(Array.isArray(saved))for(const r of saved){
+    const p={id:r.id,owner:r.owner,repo:r.repo,sha:r.sha,files:r.files,meta:r.meta};
+    index(p);S.packs.push(p);
+  }
+  if(S.packs.length){S.active=S.packs[0].id;S.file=S.packs[0].files[0]}
+  render();
+})();
+</script>
+</body>
+</html>
