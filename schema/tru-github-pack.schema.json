@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tru-github-pack 2.1.0",
+  "type": "object",
+  "required": ["schema", "version", "generated_at", "generator", "source", "provenance", "stats", "pack_digest", "files", "skipped", "warnings"],
+  "properties": {
+    "schema": { "const": "tru-github-pack" },
+    "version": { "type": "string", "pattern": "^2\\.\\d+\\.\\d+$" },
+    "generated_at": { "type": "string" },
+    "generator": { "type": "object", "required": ["name", "version"] },
+    "source": {
+      "type": "object",
+      "required": ["owner", "repo", "url", "ref", "commit_sha", "tree_sha"],
+      "properties": {
+        "owner": { "type": "string" },
+        "repo": { "type": "string" },
+        "url": { "type": "string" },
+        "ref": { "type": "string" },
+        "commit_sha": { "type": "string", "minLength": 40, "maxLength": 40 },
+        "tree_sha": { "type": "string" },
+        "default_branch": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "license": { "type": ["string", "null"] },
+        "topics": { "type": "array", "items": { "type": "string" } },
+        "pushed_at": { "type": ["string", "null"] },
+        "archived": { "type": ["boolean", "null"] },
+        "fork": { "type": ["boolean", "null"] }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["method", "tree_truncated"],
+      "properties": {
+        "method": { "type": "string" },
+        "api_base": { "type": "string" },
+        "raw_base": { "type": "string" },
+        "authenticated": { "type": "boolean" },
+        "tree_truncated": { "type": "boolean" },
+        "limits": { "type": "object" }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "files": { "type": "integer" },
+        "bytes": { "type": "integer" },
+        "by_kind": { "type": "object" },
+        "noise_counts": { "type": "object" },
+        "skipped_listed": { "type": "integer" }
+      }
+    },
+    "pack_digest": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "kind", "size", "sha256", "text"],
+        "properties": {
+          "path": { "type": "string" },
+          "kind": { "type": "string", "enum": ["readme", "manifest", "config", "doc", "knowledge", "extra"] },
+          "size": { "type": "integer" },
+          "git_sha": { "type": "string" },
+          "sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+          "lang": { "type": "string" },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "skipped": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "reason"],
+        "properties": {
+          "path": { "type": "string" },
+          "reason": { "type": "string" },
+          "size": { "type": "integer" },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}
