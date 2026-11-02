@@ -82,7 +82,7 @@ td,th{border-bottom:1px solid var(--line);padding:3px 12px 3px 0;text-align:left
 <script>
 "use strict";
 const $=s=>document.querySelector(s);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&","<":"<",">":">",'"':"""}[c]));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&"+"amp;","<":"&"+"lt;",">":"&"+"gt;",'"':"&"+"quot;"}[c]));
 const KINDS=["readme","manifest","config","doc","knowledge","extra"];
 const S={packs:[],active:null,file:null,kinds:new Set(),q:"",raw:false,ver:{}};
 
