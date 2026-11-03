@@ -6,6 +6,7 @@
 
 ```
 tools/tru_shelf.py
+tools/tru_propose.py
 tests/test_tru_shelf.py
 SHELF.md
 shelf/
@@ -58,3 +59,16 @@ Set `GITHUB_TOKEN` (read-only is enough) to avoid GitHub’s anonymous rate limi
 ```bash
 python -m unittest discover -s tests
 ```
+
+## Proposer (the missing front link)
+
+`tools/tru_propose.py` runs `github_pull.py` then `tru_shelf.py propose`:
+
+```bash
+python tools/tru_propose.py owner/repo
+python tools/tru_propose.py owner/repo@v1.2
+GITHUB_TOKEN=... python tools/tru_propose.py owner/repo --min-age-days 7
+```
+
+This is the autonomous intake path. Staging still never touches the shelf;
+`approve` remains a separate deliberate step.
