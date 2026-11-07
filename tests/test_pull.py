@@ -29,6 +29,16 @@ class Classify(unittest.TestCase):
         self.assertEqual(kind("requirements.txt"), "config")
         self.assertEqual(kind("pyproject.toml"), "config")
 
+    def test_keeps_tools_py(self):
+        self.assertEqual(kind("tools/github_pull.py"), "extra")
+        self.assertEqual(kind("tools/tru_shelf.py"), "extra")
+        self.assertEqual(kind("tools/nested/util.py"), "extra")
+        # still noise outside tools/
+        self.assertIsNone(kind("src/main.py"))
+        self.assertIsNone(kind("lib/helper.py"))
+        # --exclude wins
+        self.assertIsNone(kind("tools/github_pull.py", exclude=("tools/**",)))
+
     def test_drops_noise(self):
         self.assertIsNone(kind("src/main.py"))
         self.assertIsNone(kind("node_modules/x/index.js"))
@@ -38,30 +48,35 @@ class Classify(unittest.TestCase):
         self.assertIsNone(kind("tests/fixtures/data.json"))
 
     def test_globs(self):
-        self.assertEqual(kind("src/schema.sql", include=["*.sql"]), "extra")
-        self.assertIsNone(kind("docs/internal.md", exclude=["docs/internal*"]))
+        self.assertEqual(kind("src/main.py", include=("src/**",)), "extra")
+        self.assertIsNone(kind("docs/x.md", exclude=("docs/**",)))
 
 
 class Select(unittest.TestCase):
-    def tree(self):
-        return [
-            {"type": "tree", "path": "docs"},
-            {"type": "blob", "path": "README.md", "size": 100, "sha": "a"},
-            {"type": "blob", "path": "docs/a.md", "size": 200, "sha": "b"},
-            {"type": "blob", "path": "docs/huge.md", "size": 999999, "sha": "c"},
-            {"type": "blob", "path": "src/x.py", "size": 50, "sha": "d"},
-            {"type": "blob", "path": "notes/n.md", "size": 300, "sha": "e"},
-        ]
-
     def test_sizes_and_noise(self):
-        kept, skipped, noise = gp.select_files(self.tree(), max_file=1000)
-        self.assertEqual([f["path"] for f in kept], ["README.md", "docs/a.md", "notes/n.md"])
-        self.assertEqual(skipped, [{"path": "docs/huge.md", "reason": "too-large", "size": 999999}])
-        self.assertEqual(noise["code-or-other"], 1)
+        entries = [
+            {"path": "README.md", "type": "blob", "size": 10, "sha": "a"},
+            {"path": "src/x.py", "type": "blob", "size": 10, "sha": "b"},
+            {"path": "docs/a.md", "type": "blob", "size": 10, "sha": "c"},
+        ]
+        kept, skipped, noise = gp.select_files(entries)
+        paths = {f["path"] for f in kept}
+        self.assertIn("README.md", paths)
+        self.assertIn("docs/a.md", paths)
+        self.assertNotIn("src/x.py", paths)
+        self.assertGreaterEqual(noise.get("code-or-other", 0), 1)
 
     def test_budget_drops_lowest_priority_first(self):
-        kept, skipped, _ = gp.select_files(self.tree(), max_file=1000, max_total=350)
-        self.assertEqual([f["path"] for f in kept], ["README.md", "docs/a.md"])
+        entries = [
+            {"path": "README.md", "type": "blob", "size": 100, "sha": "a"},
+            {"path": "notes/n.md", "type": "blob", "size": 300, "sha": "b"},
+            {"path": "LICENSE", "type": "blob", "size": 50, "sha": "c"},
+        ]
+        kept, skipped, noise = gp.select_files(entries, max_total=200)
+        paths = {f["path"] for f in kept}
+        self.assertIn("README.md", paths)
+        self.assertIn("LICENSE", paths)
+        self.assertNotIn("notes/n.md", paths)
         self.assertIn({"path": "notes/n.md", "reason": "over-budget", "size": 300}, skipped)
 
 

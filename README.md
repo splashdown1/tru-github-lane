@@ -42,9 +42,9 @@ The puller resolves the ref to an exact commit, reads the git tree, and keeps on
 | `config` | `package.json`, `pyproject.toml`, `requirements*.txt`, `Cargo.toml`, `go.mod`, `Dockerfile`, `Makefile`, `tsconfig.json`, `mkdocs.yml`, `.github/workflows/*.yml`, and similar |
 | `doc` | `.md .rst .adoc .org .txt` at the root, in `docs/`, `doc/`, `wiki/`, `guides/`, or elsewhere (`.txt` only at the root or in doc/knowledge dirs) |
 | `knowledge` | prose in `notes/`, `knowledge/`, `spec(s)/`, `rfcs/`, `adr(s)/`, `design/`, `content/`, `canon/`, `reference/`, `data/`, plus `.json .csv .tsv .yaml .toml` data files inside those directories |
-| `extra` | anything matched by `--include` |
+| `extra` | anything matched by `--include`, plus `tools/**/*.py` by default (tool source for verification) |
 
-Never kept: source code, `node_modules`, `vendor`, `dist`, `build`, lockfiles, minified or generated files, images and other binaries (SVG included), test fixtures, dot-directories other than `.github`. These are counted in `stats.noise_counts`, not listed.
+Never kept: application source code (except `tools/**/*.py`), `node_modules`, `vendor`, `dist`, `build`, lockfiles, minified or generated files, images and other binaries (SVG included), test fixtures, dot-directories other than `.github`. These are counted in `stats.noise_counts`, not listed.
 
 Listed in `skipped` with a reason: `too-large`, `over-budget`, `not-text`, `fetch-failed`, `excluded-by-glob`.
 
