@@ -6,6 +6,7 @@ __pycache__/
 
 # generated packs stay local; commit only curated examples
 packs/*.json
+packs/grow/
 !packs/examples/
 
 # shelf: keep structure, ignore staged candidates
