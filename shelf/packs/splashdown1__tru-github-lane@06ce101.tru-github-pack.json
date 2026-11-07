@@ -1,0 +1,100 @@
+{
+  "files": [
+    {
+      "git_sha": "187a099e7bbc9fbd841befc55c884aa808267348",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "4dc00d2ca3baa7f7d24776f1ef44f201845cdc078005e32e19a8ad38021ec12b",
+      "size": 4851,
+      "text": "# TRU GitHub Lane\n\nPull public GitHub repos into portable packs, then inspect, search and verify them offline in a single HTML file.\n\n- `tools/github_pull.py` builds a `tru-github-pack` (format 2.1.0) from a public repo.\n- `lane/index.html` is the offline reader. No network, no dependencies, no build step.\n\nA gap stays a gap: every file that was not kept is either counted or listed with a reason, and every kept file carries a hash.\n\n## Quick start\n\n```bash\npython tools/github_pull.py owner/repo            # writes packs/owner--repo.tru-github-pack.json\npython tools/github_pull.py owner/repo --dry-run  # show what would be kept, write nothing\n```\n\nThen open `lane/index.html` in a browser and load the pack (button or drag and drop). Packs are stored in the browser's IndexedDB, so they are still there next time.\n\nPython 3.8+, standard library only. Set `GITHUB_TOKEN` to raise the GitHub API rate limit (60 requests/hour unauthenticated).\n\n### Options\n\n| Flag | Meaning |\n| --- | --- |\n| `owner/repo@ref` or a github.com URL | Repo to pull. `@ref` is a branch, tag or commit. Several repos allowed. |\n| `--out DIR` | Output directory (default `packs`), or a `.json` path when pulling one repo. |\n| `--include GLOB` | Force-include matching paths as kind `extra`. Repeatable. |\n| `--exclude GLOB` | Drop matching paths. Repeatable. Wins over `--include`. |\n| `--max-file-kb N` | Skip files larger than N KB (default 256). |\n| `--max-total-mb N` | Total text budget (default 8). Lowest-priority files are dropped first. |\n| `--dry-run` | Classify only. |\n| `--pretty` | Indent the JSON. |\n\n## What gets extracted\n\nThe puller resolves the ref to an exact commit, reads the git tree, and keeps only:\n\n| Kind | Examples |\n| --- | --- |\n| `readme` | `README*` anywhere outside skipped directories |\n| `manifest` | root `LICENSE`, `NOTICE`, `SECURITY`, `CITATION.cff`, `CODEOWNERS`, `codemeta.json` |\n| `config` | `package.json`, `pyproject.toml`, `requirements*.txt`, `Cargo.toml`, `go.mod`, `Dockerfile`, `Makefile`, `tsconfig.json`, `mkdocs.yml`, `.github/workflows/*.yml`, and similar |\n| `doc` | `.md .rst .adoc .org .txt` at the root, in `docs/`, `doc/`, `wiki/`, `guides/`, or elsewhere (`.txt` only at the root or in doc/knowledge dirs) |\n| `knowledge` | prose in `notes/`, `knowledge/`, `spec(s)/`, `rfcs/`, `adr(s)/`, `design/`, `content/`, `canon/`, `reference/`, `data/`, plus `.json .csv .tsv .yaml .toml` data files inside those directories |\n| `extra` | anything matched by `--include` |\n\nNever kept: source code, `node_modules`, `vendor`, `dist`, `build`, lockfiles, minified or generated files, images and other binaries (SVG included), test fixtures, dot-directories other than `.github`. These are counted in `stats.noise_counts`, not listed.\n\nListed in `skipped` with a reason: `too-large`, `over-budget`, `not-text`, `fetch-failed`, `excluded-by-glob`.\n\nIf GitHub truncates a very large tree, the pack says so in `warnings` and `provenance.tree_truncated`.\n\n## Pack format 2.1.0\n\nSee `schema/tru-github-pack.schema.json`. In short:\n\n- `source`: owner, repo, url, ref, **commit_sha**, tree_sha, license, topics, pushed_at.\n- `provenance`: how it was fetched, whether authenticated, the limits used.\n- `files[]`: `path`, `kind`, `size`, `git_sha` (blob sha from GitHub), `sha256` (of the stored UTF-8 text), `lang`, `text`.\n- `pack_digest`: sha256 of the sorted `path<TAB>sha256` lines joined with LF.\n- `skipped[]`, `warnings[]`, `stats`.\n\nFiles are fetched from `raw.githubusercontent.com` at the resolved commit sha, never from a moving branch.\n\nThe lane's **Verify hashes** button recomputes every file hash and the pack digest in the browser and flags any mismatch. It needs `crypto.subtle`, which browsers expose on `https:` and `localhost`, and on `file:` in most. If yours does not, serve the folder locally with `python -m http.server`.\n\nCompatibility: the lane reads any pack with a `files` array of `{path, text}` and falls back to a single `readme` string for older packs. Fields it does not find are simply not shown.\n\n## The lane\n\n- Load several packs at once; search runs across all of them (BM25-style ranking, path matches weighted up).\n- File tree with kind filters, rendered Markdown or source view, and a Provenance panel with commit, limits, warnings and everything that was skipped.\n- Markdown is escaped before rendering; links are shown but inert, so a pack can never make the page call out.\n- Light and dark follow the system; the Theme button overrides.\n\n## Repo layout\n\n```\ntru-github-lane/\n  README.md\n  LICENSE\n  tools/github_pull.py\n  lane/index.html\n  schema/tru-github-pack.schema.json\n  tests/test_pull.py\n  packs/examples/        # commit small example packs here\n  .gitignore             # ignores generated packs\n```\n\nRun the tests with `python -m unittest discover -s tests`.\n\n## License\n\nMIT\n"
+    },
+    {
+      "git_sha": "0d777bd12cfac62817c6953701ca3fba3134f29d",
+      "kind": "manifest",
+      "lang": "license",
+      "path": "LICENSE",
+      "sha256": "12eac2ff3d7feda0f0b526035675501b539e1113a51b749ab3812093d83a2c5c",
+      "size": 1068,
+      "text": "MIT License\n\nCopyright (c) 2026 splashdown1\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "git_sha": "0575e6160bb8231cc8527caaafcaba6ab588a2ec",
+      "kind": "doc",
+      "lang": "md",
+      "path": "CLAUDE_CONTRIBUTION.md",
+      "sha256": "47b32fed586228d01db2325e1bb580db12715e19d06745f7720f49a382b5b38c",
+      "size": 1376,
+      "text": "# Claude contribution to TRU\n\nContributed by: Claude (Anthropic), working with splashdown1. Single pack-level timestamp applies on publish.\n\n## What we added\n\n- `tools/tru_shelf.py`: shelf intake (propose, approve, reject, list, check). The shelf holds only items pinned to a full 40-hex commit SHA; each item records who contributed it, so the shelf is added to, not only taken from.\n- `tools/tru_extract.py`: extraction beyond README.md (file tree, all markdown headings, license, manifests, Python docstrings, JS exports, TODO/FIXME), each record with repo, SHA, path and source hash. Emits pack v2.1.0 and merges into an existing pack.\n- `tools/tru_lane.py`: builds a single-file offline HTML lane from a pack (search and kind filter, no network, no external assets).\n- `docs/hg-torus-inertial-rig.md`: evidence tiers and a controlled test protocol for the liquid-metal torus experiment.\n\n## Method notes\n\n- Established means pinned. Branch names, tags and short SHAs are held as pending.\n- Dedup is by repo + SHA + path; re-extracting the same SHA replaces its records.\n- All tools are stdlib-only Python and run offline.\n\n## Tested\n\nShelf: unpinned item refused, pinned item established, audit passes. Extract and lane: ran against a local directory, merge replaced rather than duplicated records. Not yet run against a live GitHub tarball (no network in this session).\n"
+    },
+    {
+      "git_sha": "a81ab0e015f9c9c29df0ec5bec97d4eeb5f4c693",
+      "kind": "doc",
+      "lang": "md",
+      "path": "SHELF.md",
+      "sha256": "b6aeca90ae17272bebaf69d86224066377188dfbfe0c8a3d5472d17a16116362",
+      "size": 2440,
+      "text": "# TRU Shelf Intake\n\n`tools/tru_shelf.py` (stdlib only).\n\n## Files\n\n```\ntools/tru_shelf.py\ntools/tru_propose.py\ntests/test_tru_shelf.py\nSHELF.md\nshelf/\n  staging/          # candidate packs (not yet on the shelf)\n  packs/            # approved packs (immutable once written)\n  manifest.jsonl    # hash-chained append-only index\n```\n\n## Flow\n\n```bash\npython tools/tru_shelf.py propose  path/to/x.tru-github-pack.json   # checks, then stages\npython tools/tru_shelf.py list                                      # what is waiting\npython tools/tru_shelf.py approve  owner__repo@abc1234 --by you     # re-checks, then adds to shelf\npython tools/tru_shelf.py reject   owner__repo@abc1234 --reason \"...\"\npython tools/tru_shelf.py check                                     # offline audit of the whole shelf\n```\n\nStaging never touches the shelf. Only `approve` does, and it re-runs every check first.\n\n## What \u201cestablished\u201d means (all must pass)\n\n1. Source commit is a full 40-hex SHA that exists in the source repo (no branches, no \u201clatest\u201d).\n2. That commit is reachable from the repo\u2019s default branch.\n3. Every file `sha256` and the `pack_digest` recompute exactly.\n4. Commit is at least 7 days old (`--min-age-days`).\n5. Not already on the shelf. Entries are added, never edited.\n\nIf GitHub can\u2019t be reached, the pack is rejected (fails closed).\n\nUse `--offline` only for local testing of hash logic; it still requires a full 40-hex SHA shape.\n\n## Tier\n\n`intact+provenance`. It means the bytes are unchanged and the source is pinned.  \nIt does **not** mean the content is true.\n\n## Audit\n\n`shelf/manifest.jsonl` is hash-chained: each entry holds the hash of the one before it, and the hash of its shelf pack file.  \n`check` reports edited entries, changed or missing pack files, and orphan packs.  \nDeleting entries from the end of the file is only visible through git history.\n\n## Auth\n\nSet `GITHUB_TOKEN` (read-only is enough) to avoid GitHub\u2019s anonymous rate limit.\n\n## Tests\n\n```bash\npython -m unittest discover -s tests\n```\n\n## Proposer (the missing front link)\n\n`tools/tru_propose.py` runs `github_pull.py` then `tru_shelf.py propose`:\n\n```bash\npython tools/tru_propose.py owner/repo\npython tools/tru_propose.py owner/repo@v1.2\nGITHUB_TOKEN=... python tools/tru_propose.py owner/repo --min-age-days 7\n```\n\nThis is the autonomous intake path. Staging still never touches the shelf;\n`approve` remains a separate deliberate step.\n"
+    },
+    {
+      "git_sha": "532ef5488651b4df1a99a55a4cd24be5eb5fe5d7",
+      "kind": "doc",
+      "lang": "md",
+      "path": "docs/hg-torus-inertial-rig.md",
+      "sha256": "a1bd90d3fdd5521d67a2e190fb7bf669fb60c3c84ddd52559da204472126001c",
+      "size": 3286,
+      "text": "# Hg-Torus Inertial Rig: Evidence Tiers and Test Protocol\n\nStatus: DRAFT for design review. Timestamp: set at publish (single pack-level stamp).\nClaim under test (H1): a rotating liquid-metal toroid produces a measurable reduction in the apparent inertia (or weight/thrust response) of its host rig.\n\n## 1. Evidence tiers\n\n| Tier | Meaning | What qualifies |\n|---|---|---|\n| T0 | Idea | Stated hypothesis, no data |\n| T1 | Modelled | Written physics model with predicted magnitude and a stated detection threshold |\n| T2 | Measured, uncontrolled | One run, one rig, no sham |\n| T3 | Measured, controlled | Sham/null runs, blinded analysis, error budget; effect exceeds budget |\n| T4 | Replicated | Independent rig or team reproduces T3 with pinned code/data (commit SHA) |\n\nNothing is promoted without a pinned SHA for the analysis code and raw data. A result that fails a null run is demoted, not explained away.\n\n## 2. Prior and why controls matter\n\nMomentum and energy conservation predict no net inertia change for a closed rig. A positive result is extraordinary, so the protocol is built to find artifacts first: gyroscopic torques, buoyancy and sloshing, bearing and motor reaction, air drag and convective lift, magnetic coupling to the environment, thermal drift, and load-cell creep.\n\n## 3. Safety\n\nMercury is toxic and volatile. Do not build the first rig with Hg. Use a surrogate of matched density behavior where possible (galinstan, sealed, or water-glycol for geometry-only trials), double containment, and no open handling. Mercury work needs a lab with vapor control and disposal.\n\n## 4. Protocol\n\n1. **Rig**: sealed toroidal channel on a rigid frame; drive motor outside the fluid path; fluid mass logged to 0.01 g.\n2. **Measurement**: (a) load cell for apparent weight, (b) torsion pendulum or linear air-track for inertial response. Log at a fixed rate with a shared clock.\n3. **Conditions**, each repeated at least 20 times in randomized order by a script that hides the label from the analyst:\n   - A: fluid, spinning at set rate\n   - B: fluid, stationary\n   - C: sham, same total mass as a solid ring spinning at the same rate\n   - D: empty channel, motor running\n   - E: fluid, spinning, reversed direction\n4. **Error budget** before the first run: load-cell noise floor, thermal drift per hour, vibration coupling (measure with motor on, fluid out), seal leakage.\n5. **Environment sweep**: repeat A and C in vacuum or at reduced pressure to separate air effects; shield or rotate the rig relative to the lab magnetic field.\n6. **Analysis**: preregistered (effect size, test, threshold) and committed before data is taken. Report A-minus-C, A-minus-B and E-minus-A with confidence intervals.\n7. **Pass condition for T3**: A differs from C and B by more than the error budget, sign flips or vanishes appropriately under E and D, and the effect scales with spin rate in the direction the model predicts.\n8. **Publish**: raw data, scripts and rig drawings under a pinned commit SHA via the shelf (`tru_shelf.py propose`, `approve`, `check`).\n\n## 5. Open items for design review\n\n- Model for H1 with predicted magnitude (needed to reach T1)\n- Which inertia measure we commit to (weight, thrust, or oscillation period)\n- Surrogate fluid choice and containment design\n"
+    }
+  ],
+  "generated_at": "2026-11-07T11:29:50+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "28f1c5ef4c69fb3da766a8439aad2fe8c171674403cb34a0531418a97e116d0f",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "06ce1014b6f37b9a89b8b53747a7e2531ff76756",
+    "default_branch": "main",
+    "description": "TRU GitHub Lane \u2014 pull public GitHub repos into portable offline packs (2.1.0) and inspect/search/verify them in a single-file HTML reader. Stdlib Python + zero-dependency lane.",
+    "fork": false,
+    "license": "MIT",
+    "owner": "splashdown1",
+    "pushed_at": "2026-11-07T11:29:34Z",
+    "ref": "06ce1014b6f37b9a89b8b53747a7e2531ff76756",
+    "repo": "tru-github-lane",
+    "topics": [],
+    "tree_sha": "1db2e2a3e26ee261588ac50c2c62271f59ae5d16",
+    "url": "https://github.com/splashdown1/tru-github-lane"
+  },
+  "stats": {
+    "by_kind": {
+      "doc": 3,
+      "manifest": 1,
+      "readme": 1
+    },
+    "bytes": 13021,
+    "files": 5,
+    "noise_counts": {
+      "code-or-other": 14
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}
