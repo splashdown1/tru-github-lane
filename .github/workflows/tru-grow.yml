@@ -1,0 +1,103 @@
+name: tru-grow
+
+on:
+  schedule:
+    # Weekly, Monday 12:00 UTC
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  grow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read watch list
+        id: watch
+        run: |
+          set -euo pipefail
+          REPOS=$(grep -vE '^[[:space:]]*(#|$)' shelf/watchlist.txt | tr '\n' ' ' | xargs)
+          if [ -z "${REPOS}" ]; then
+            echo "watchlist empty — nothing to do"
+            echo "repos=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "repos=${REPOS}" >> "$GITHUB_OUTPUT"
+          echo "Watch list: ${REPOS}"
+
+      - name: Propose packs (pull + stage)
+        if: steps.watch.outputs.repos != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # tru_propose links github_pull → tru_shelf propose.
+          # Default --min-age-days 7: only established commits stage.
+          # GITHUB_TOKEN raises rate limits and enables reachability checks.
+          python3 tools/tru_propose.py \
+            --keep-packs \
+            --out packs/grow \
+            ${{ steps.watch.outputs.repos }} \
+            || true
+          # || true: individual repos may fail propose (too young, already on shelf);
+          # we still want a PR if anything staged.
+
+      - name: List staging
+        id: staging
+        run: |
+          set -euo pipefail
+          python3 tools/tru_shelf.py list | tee /tmp/staging.txt
+          if grep -q 'staging is empty' /tmp/staging.txt; then
+            echo "has_staging=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_staging=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Approve staged packs onto branch shelf
+        if: steps.staging.outputs.has_staging == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Approval on the branch is the machine step; the human gate is merging the PR.
+          # --by records the actor in the manifest.
+          while read -r line; do
+            id=$(echo "$line" | awk '{print $1}')
+            [ -z "$id" ] && continue
+            echo "Approving $id"
+            python3 tools/tru_shelf.py approve "$id" --by "tru-grow[bot]"
+          done < <(python3 tools/tru_shelf.py list | grep -v 'staging is empty' || true)
+
+      - name: Shelf check
+        if: steps.staging.outputs.has_staging == 'true'
+        run: python3 tools/tru_shelf.py check
+
+      - name: Open pull request
+        if: steps.staging.outputs.has_staging == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: tru-grow/auto
+          delete-branch: true
+          title: "TRU grow: new shelf entries for review"
+          body: |
+            Automated intake from `shelf/watchlist.txt`.
+
+            - Packs were pulled with full commit SHAs and proposed through `tools/tru_shelf.py`.
+            - Entries were approved onto this branch by `tru-grow[bot]` so the diff is the shelf delta.
+            - **Merging this PR is the human approval** that lands established items on `main`.
+
+            Review `shelf/manifest.jsonl` and the new files under `shelf/packs/`.
+            Reject by closing; do not merge if provenance or content is wrong.
+          commit-message: |
+            TRU grow: shelf proposals
+
+            Proposed and branch-approved via tools/tru_propose.py + tru_shelf.py.
+            Merge = establish on main.

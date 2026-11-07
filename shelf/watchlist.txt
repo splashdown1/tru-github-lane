@@ -1,0 +1,9 @@
+# TRU grow watch list
+# One owner/repo or owner/repo@ref per line. Blank lines and # comments ignored.
+# The Action runs: python tools/tru_propose.py $(grep -v ...) 
+
+splashdown1/tru-github-lane
+splashdown1/tru-shelf
+splashdown1/tru-overview
+splashdown1/tru-canonbound
+splashdown1/tru-lifeline
