@@ -8,6 +8,8 @@ TRU GitHub Lane pulls public GitHub repos into portable, hash-checked packs. We 
 
 The shelf is a record of what we can show is unchanged and pinned to a source. It is not a record of what is true.
 
+This repo is the **central closed-loop intake** for the TRU family. Active discovery, processing, and write-back (via PR) live here so the individual lanes can stay pure single-file, offline, zero-dependency engines.
+
 ## Verify it yourself (about a minute)
 
 Python 3.8+, standard library only, no network needed for the first two steps.
@@ -31,7 +33,7 @@ An item reaches the shelf only if all of these hold (details in `SHELF.md`):
 1. It is pinned to a full 40-hex commit SHA that exists in the source repo. No branches, no "latest".
 2. That commit is reachable from the repo's default branch.
 3. Every file hash and the pack digest recompute exactly.
-4. The commit is at least 7 days old.
+4. The commit is at least **6 days** old (the verification buffer).
 5. It is not already on the shelf. Entries are added, never edited.
 
 If GitHub cannot be reached, the check fails closed.
@@ -43,9 +45,18 @@ If GitHub cannot be reached, the check fails closed.
 - **Not experimental results.** `docs/hg-torus-inertial-rig.md` is a protocol with evidence tiers for a test, not a report that the test succeeded.
 - **Not a learning system.** Nothing here changes any model's weights. TRU grows by adding verified, pinned items, and a reader gets caught up by reading them.
 
-## How it grows
+## How it grows (the closed loop)
 
-`.github/workflows/tru-grow.yml` runs weekly (and on demand). It reads `shelf/watchlist.txt`, builds packs, applies the rules above, and opens a pull request with the proposals. Merging that pull request is the human approval. Nothing approves itself onto main.
+`.github/workflows/tru-grow.yml` runs weekly (and on demand). It reads `shelf/watchlist.txt`, builds packs, applies the 6-day buffer and provenance rules, and opens a pull request with the proposals. **Merging that pull request is the human approval.** Nothing approves itself onto main.
+
+This is the active agent path. Passive crawlers only read; this loop writes under strict constraints.
+
+## Lane standards (locked)
+
+- Single-file HTML/CSS/JS for the engines and field cards (or minimal stdlib Python when a tool is required).
+- 100% offline, zero external dependencies at runtime.
+- A gap stays a gap.
+- External or news-derived material must clear the 6-day verification buffer before establishment or inclusion in permanent builds.
 
 ## How to add to it
 
