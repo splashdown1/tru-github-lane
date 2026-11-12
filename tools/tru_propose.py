@@ -16,7 +16,7 @@ Flow:
   2. Run tru_shelf propose on each resulting pack
   3. Report staged ids (or rejection reasons)
 
-Staging never touches the shelf. Approve is still a separate, deliberate step.
+Staging never touches the shelf. Approve is still a separate deliberate step.
 """
 
 from __future__ import annotations
@@ -55,8 +55,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--max-file-kb", type=int, default=256)
     ap.add_argument("--max-total-mb", type=float, default=8.0)
     ap.add_argument("--workers", type=int, default=4)
-    ap.add_argument("--min-age-days", type=int, default=6,
-                    help="passed to tru_shelf propose (default 6 — verification buffer)")
+    ap.add_argument("--min-age-days", type=int, default=0,
+                    help="passed to tru_shelf propose (default 0 = open pipe)")
     ap.add_argument("--offline", action="store_true",
                     help="pass --offline to tru_shelf (skip live GitHub age/reachability)")
     ap.add_argument("--dry-run", action="store_true",
