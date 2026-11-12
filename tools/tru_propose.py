@@ -55,8 +55,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--max-file-kb", type=int, default=256)
     ap.add_argument("--max-total-mb", type=float, default=8.0)
     ap.add_argument("--workers", type=int, default=4)
-    ap.add_argument("--min-age-days", type=int, default=7,
-                    help="passed to tru_shelf propose (default 7)")
+    ap.add_argument("--min-age-days", type=int, default=6,
+                    help="passed to tru_shelf propose (default 6 — verification buffer)")
     ap.add_argument("--offline", action="store_true",
                     help="pass --offline to tru_shelf (skip live GitHub age/reachability)")
     ap.add_argument("--dry-run", action="store_true",
