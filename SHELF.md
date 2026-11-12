@@ -13,6 +13,7 @@ shelf/
   staging/          # candidate packs (not yet on the shelf)
   packs/            # approved packs (immutable once written)
   manifest.jsonl    # hash-chained append-only index
+  watchlist.txt     # sources the closed-loop scans
 ```
 
 ## Flow
@@ -32,12 +33,30 @@ Staging never touches the shelf. Only `approve` does, and it re-runs every check
 1. Source commit is a full 40-hex SHA that exists in the source repo (no branches, no “latest”).
 2. That commit is reachable from the repo’s default branch.
 3. Every file `sha256` and the `pack_digest` recompute exactly.
-4. Commit is at least 7 days old (`--min-age-days`).
+4. Commit is at least **6 days** old (`--min-age-days`, the verification buffer). Override only for deliberate bootstrap.
 5. Not already on the shelf. Entries are added, never edited.
 
 If GitHub can’t be reached, the pack is rejected (fails closed).
 
 Use `--offline` only for local testing of hash logic; it still requires a full 40-hex SHA shape.
+
+## Closed-loop architecture (unified for the TRU family)
+
+The active agent lives here, not in every lane:
+
+- Discovery: `shelf/watchlist.txt`
+- Generation + processing: `tools/tru_propose.py` → `github_pull.py` + strict checks
+- Write-back: GitHub Action `tru-grow` opens a PR; **merging the PR is the human gate**
+- Result: immutable, hash-chained, provenance-pinned packs on the shelf
+
+This is the single closed metabolic loop for the family. Replicating the full Python shelf stack into pure single-file HTML lanes would violate the lane standards below. The lanes stay lean; this repo is the intake organ.
+
+## Lane standards locked in
+
+- **Single-file HTML/CSS/JS** (or minimal stdlib Python tools when a tool is required).
+- **100% offline / zero external dependencies** at runtime for the engines and field cards.
+- **A gap stays a gap** — no invented content, no silent fills.
+- External or news-derived material must clear the 6-day verification buffer before it can be established on the shelf or folded into permanent builds.
 
 ## Tier
 
@@ -67,7 +86,7 @@ python -m unittest discover -s tests
 ```bash
 python tools/tru_propose.py owner/repo
 python tools/tru_propose.py owner/repo@v1.2
-GITHUB_TOKEN=... python tools/tru_propose.py owner/repo --min-age-days 7
+GITHUB_TOKEN=... python tools/tru_propose.py owner/repo --min-age-days 6
 ```
 
 This is the autonomous intake path. Staging still never touches the shelf;
