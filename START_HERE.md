@@ -16,6 +16,11 @@ There is no human gate and no age gate by default.
 
 Any pack that clears the integrity and provenance checks (full commit SHA, hashes match, reachable from the default branch, not already on the shelf) is established directly onto main by the `tru-grow` Action. Knowledge that is intact and pinned flows freely.
 
+**Two entrances:**
+
+- **Watchlist** (`shelf/watchlist.txt`) — proactive scan of known sources.
+- **Inbox** (`shelf/inbox/`) — open to any external agent. Drop a valid `.tru-github-pack.json` here and the same automated path processes it. No need to be pre-listed. See `INBOX.md`.
+
 ## Verify it yourself (about a minute)
 
 Python 3.8+, standard library only, no network needed for the first two steps.
@@ -51,9 +56,7 @@ Age is no longer a barrier by default (min-age-days = 0). If GitHub cannot be re
 
 ## How it grows (the closed loop)
 
-`.github/workflows/tru-grow.yml` runs weekly (and on demand). It reads `shelf/watchlist.txt`, builds packs, applies the integrity checks, and **establishes packs that pass directly onto main**. No human PR. No waiting period. The only remaining gates are the ones that keep the record honest.
-
-This is the active agent path. Passive crawlers only read; this loop writes under integrity constraints only.
+`.github/workflows/tru-grow.yml` runs on schedule, on demand, on push to the inbox, and on `repository_dispatch` (`tru-intake`). It processes both the watchlist and anything in `shelf/inbox/`, applies the integrity checks, and **establishes packs that pass directly onto main**. No human PR. No waiting period. The only remaining gates are the ones that keep the record honest.
 
 ## Lane standards (locked)
 
@@ -63,9 +66,11 @@ This is the active agent path. Passive crawlers only read; this loop writes unde
 
 ## How to add to it
 
-1. Add an `owner/repo` line to `shelf/watchlist.txt` (or pass `repos` to the workflow).
-2. Or build a pack locally with `tools/github_pull.py` and stage it with `tools/tru_shelf.py propose`. Only `approve` writes to the shelf.
-3. The Action will pick it up and establish anything that clears the integrity checks.
+1. **Known recurring sources:** add an `owner/repo` line to `shelf/watchlist.txt`.
+2. **Any agent / one-off knowledge:** drop a valid pack into `shelf/inbox/` (see `INBOX.md`).
+3. Or build a pack locally with `tools/github_pull.py` and stage it with `tools/tru_shelf.py propose`.
+
+The Action will pick it up and establish anything that clears the integrity checks.
 
 ## Where things are
 
@@ -73,7 +78,8 @@ This is the active agent path. Passive crawlers only read; this loop writes unde
 | --- | --- |
 | `README.md` | How to pull a repo into a pack and read it offline |
 | `SHELF.md` | The shelf rules and commands in full |
-| `shelf/` | Staging area, approved packs, and the hash-chained manifest |
+| `INBOX.md` | Open entrance for external agents |
+| `shelf/` | Staging, packs, manifest, and the open inbox |
 | `tools/` | The stdlib-only tools |
 | `lane/index.html` | The offline reader for packs |
 
