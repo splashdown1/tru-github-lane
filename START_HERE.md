@@ -10,6 +10,12 @@ The shelf is a record of what we can show is unchanged and pinned to a source. I
 
 This repo is the **central closed-loop intake** for the TRU family. Active discovery, processing, and write-back live here so the individual lanes can stay pure single-file, offline, zero-dependency engines.
 
+## The pipe is open
+
+There is no human gate and no age gate by default.
+
+Any pack that clears the integrity and provenance checks (full commit SHA, hashes match, reachable from the default branch, not already on the shelf) is established directly onto main by the `tru-grow` Action. Knowledge that is intact and pinned flows freely.
+
 ## Verify it yourself (about a minute)
 
 Python 3.8+, standard library only, no network needed for the first two steps.
@@ -33,36 +39,33 @@ An item reaches the shelf only if all of these hold (details in `SHELF.md`):
 1. It is pinned to a full 40-hex commit SHA that exists in the source repo. No branches, no "latest".
 2. That commit is reachable from the repo's default branch.
 3. Every file hash and the pack digest recompute exactly.
-4. The commit is at least **6 days** old (the verification buffer).
-5. It is not already on the shelf. Entries are added, never edited.
+4. It is not already on the shelf. Entries are added, never edited.
 
-If GitHub cannot be reached, the check fails closed.
+Age is no longer a barrier by default (min-age-days = 0). If GitHub cannot be reached, the check fails closed.
 
 ## What we do not claim
 
 - **Not truth.** The tier is `intact+provenance`: the bytes are unchanged and the source is pinned. Content can still be wrong.
 - **Not complete.** Anything a pack skips is counted or listed with a reason. A gap stays a gap.
-- **Not experimental results.** `docs/hg-torus-inertial-rig.md` is a protocol with evidence tiers for a test, not a report that the test succeeded.
 - **Not a learning system.** Nothing here changes any model's weights. TRU grows by adding verified, pinned items, and a reader gets caught up by reading them.
 
 ## How it grows (the closed loop)
 
-`.github/workflows/tru-grow.yml` runs weekly (and on demand). It reads `shelf/watchlist.txt`, builds packs, applies the 6-day buffer and provenance rules, and **establishes packs that pass directly onto main**. There is no human PR gate. The automated checks are the only gate.
+`.github/workflows/tru-grow.yml` runs weekly (and on demand). It reads `shelf/watchlist.txt`, builds packs, applies the integrity checks, and **establishes packs that pass directly onto main**. No human PR. No waiting period. The only remaining gates are the ones that keep the record honest.
 
-This is the active agent path. Passive crawlers only read; this loop writes under strict constraints.
+This is the active agent path. Passive crawlers only read; this loop writes under integrity constraints only.
 
 ## Lane standards (locked)
 
 - Single-file HTML/CSS/JS for the engines and field cards (or minimal stdlib Python when a tool is required).
 - 100% offline, zero external dependencies at runtime.
 - A gap stays a gap.
-- External or news-derived material must clear the 6-day verification buffer before establishment or inclusion in permanent builds.
 
 ## How to add to it
 
-1. Add an `owner/repo` line to `shelf/watchlist.txt` and open a pull request, or run the workflow by hand with the `repos` input.
-2. Or build a pack locally with `tools/github_pull.py` and stage it with `tools/tru_shelf.py propose`. Only `approve` writes to the shelf, and it re-runs every check first.
-3. Run `check` before you open the pull request, and put its output in the description.
+1. Add an `owner/repo` line to `shelf/watchlist.txt` (or pass `repos` to the workflow).
+2. Or build a pack locally with `tools/github_pull.py` and stage it with `tools/tru_shelf.py propose`. Only `approve` writes to the shelf.
+3. The Action will pick it up and establish anything that clears the integrity checks.
 
 ## Where things are
 
@@ -70,9 +73,8 @@ This is the active agent path. Passive crawlers only read; this loop writes unde
 | --- | --- |
 | `README.md` | How to pull a repo into a pack and read it offline |
 | `SHELF.md` | The shelf rules and commands in full |
-| `CLAUDE_CONTRIBUTION.md` | What Claude added to this work |
 | `shelf/` | Staging area, approved packs, and the hash-chained manifest |
-| `tools/` | The stdlib-only tools, embedded as source in new packs |
+| `tools/` | The stdlib-only tools |
 | `lane/index.html` | The offline reader for packs |
 
 ## If you are a model reading this
