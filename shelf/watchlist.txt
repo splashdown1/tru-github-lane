@@ -1,9 +1,51 @@
 # TRU grow watch list
 # One owner/repo or owner/repo@ref per line. Blank lines and # comments ignored.
-# The Action runs: python tools/tru_propose.py $(grep -v ...) 
+# The Action runs: python tools/tru_propose.py $(grep -v ...)
+# Central closed-loop: packs are proposed, age-gated (6-day buffer), PR-gated, then established.
+# A gap stays a gap. Single-file offline standards apply to the lanes themselves.
 
+# Core / index
 splashdown1/tru-github-lane
 splashdown1/tru-shelf
 splashdown1/tru-overview
+splashdown1/tru-search-engine
 splashdown1/tru-canonbound
 splashdown1/tru-lifeline
+splashdown1/tru-door
+splashdown1/tru-classics
+
+# Field cards (recent + established)
+splashdown1/tru-breath
+splashdown1/tru-tide
+splashdown1/tru-heat
+splashdown1/tru-hitch
+splashdown1/tru-prayer
+splashdown1/tru-signal
+splashdown1/tru-pantry
+splashdown1/tru-sky
+splashdown1/tru-nav
+splashdown1/tru-fire
+splashdown1/tru-shelter
+splashdown1/tru-cold
+splashdown1/tru-ford
+splashdown1/tru-wash
+splashdown1/tru-blade
+splashdown1/tru-watch
+splashdown1/tru-load
+splashdown1/tru-fish
+splashdown1/tru-code
+splashdown1/tru-rules
+splashdown1/tru-quiet
+splashdown1/tru-salt
+splashdown1/tru-sun
+splashdown1/tru-place
+splashdown1/tru-speaks
+splashdown1/tru-ai
+splashdown1/tru-recovery
+
+# Architecture / support
+splashdown1/tru-harbor
+splashdown1/tru-radio
+splashdown1/tru-rival
+splashdown1/tru-41
+splashdown1/tru-join
