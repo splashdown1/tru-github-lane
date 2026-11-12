@@ -430,8 +430,8 @@ def cmd_check(args: argparse.Namespace) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="TRU Shelf intake")
-    ap.add_argument("--min-age-days", type=int, default=7,
-                    help="minimum age of source commit in days (default 7)")
+    ap.add_argument("--min-age-days", type=int, default=6,
+                    help="minimum age of source commit in days (default 6 — verification buffer)")
     ap.add_argument("--offline", action="store_true",
                     help="skip live GitHub checks (still requires full SHA shape)")
     sub = ap.add_subparsers(dest="cmd", required=True)
