@@ -46,7 +46,7 @@ The active agent lives here, not in every lane:
 
 - Discovery: `shelf/watchlist.txt`
 - Generation + processing: `tools/tru_propose.py` → `github_pull.py` + strict checks
-- Write-back: GitHub Action `tru-grow` opens a PR; **merging the PR is the human gate**
+- Write-back: GitHub Action `tru-grow` **establishes directly on main** any packs that clear the automated gates (no human PR gate)
 - Result: immutable, hash-chained, provenance-pinned packs on the shelf
 
 This is the single closed metabolic loop for the family. Replicating the full Python shelf stack into pure single-file HTML lanes would violate the lane standards below. The lanes stay lean; this repo is the intake organ.
@@ -90,4 +90,4 @@ GITHUB_TOKEN=... python tools/tru_propose.py owner/repo --min-age-days 6
 ```
 
 This is the autonomous intake path. Staging still never touches the shelf;
-`approve` remains a separate deliberate step.
+`approve` remains a separate deliberate step (or is performed automatically by the Action).
