@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "cf471a5042865f02964f6d3d805a6c4e2fd5298a",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "e7e376c84fc0d7ee115e6920b31ac3e8d4c5790c0cb38fbbfadd20fcd405d528",
+      "size": 268,
+      "text": "# TRU FORD\n\nFM 21-76 water crossings. Look from high ground. Cross where the river breaks into channels, upstream of a sandbar, on a course that meets the current at about 45 degrees. Pole about 7.5 centimeters by 2.1 to 2.4 meters, planted upstream. A raft is a gap.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:50+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "d000196f7a8449f3f3b12ace3420d3e1135aabd3604fb672468f1a7d0e36c465",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "2a3f114d9baae8a882d219fb97c4421417d8e64a",
+    "default_branch": "main",
+    "description": "TRU FORD \u2014 where to cross, the upstream pole, the 45-degree course. FM 21-76. No raft.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T21:49:03Z",
+    "ref": "main",
+    "repo": "tru-ford",
+    "topics": [],
+    "tree_sha": "5c4d4e84a0eff27739ec4977f6fbea9a3884a070",
+    "url": "https://github.com/splashdown1/tru-ford"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 268,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

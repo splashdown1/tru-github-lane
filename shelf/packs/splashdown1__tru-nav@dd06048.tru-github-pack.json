@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "1ccd5874c118bf238bff73b1c419bc6f5c89776c",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "dc84ff102e9ed58eb38e96749c73b88ca862592fb2ad033842358a7e3e39d5bd",
+      "size": 245,
+      "text": "# TRU NAV\n\nDirection plus distance. Back azimuth is plus or minus 180. Type a heading and the ship returns the way home. Declination stays on the map legend. Pace is yours, counted on 100 meters. North without a compass is TRU Mark and TRU Sky.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:46+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "a04b3bbada9ff5d43c7fd44795faf03022476db937482f4caaf71d1269d23616",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "dd060485e894a993dbaa95e55cf00d008ab09fb6",
+    "default_branch": "main",
+    "description": "TRU NAV \u2014 direction plus distance. Back azimuth. No guessed declination.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T20:43:21Z",
+    "ref": "main",
+    "repo": "tru-nav",
+    "topics": [],
+    "tree_sha": "72d21cfa871d57f7b45caadaad7c62073511dc96",
+    "url": "https://github.com/splashdown1/tru-nav"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 245,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

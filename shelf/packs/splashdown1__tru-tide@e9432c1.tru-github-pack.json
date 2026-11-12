@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "2102a7d839fe6d657c8b319555ea6ea0ea801f82",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "5bb4556fad5fac8be3ba51129c3f9a3e51a1309544eafc4903b20b861e8f10bd",
+      "size": 204,
+      "text": "# TRU TIDE\n\nRule-of-thumb only: rule of twelfths, slack, flood/ebb, spring/neap, current vs height.\n\nNo live tables. No prediction engine. Local conditions override every general rule. A gap stays a gap.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:38+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "7ebe97b222f94e433534d15bc422be5f3ecfca4ff6b362c3a350017d0594a127",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "e9432c1b3688a41d33ff60f8609fb8f885d7e98d",
+    "default_branch": "main",
+    "description": "TRU TIDE \u2014 rule-of-thumb only. Twelfths, slack, flood/ebb, spring/neap. No live tables. A gap stays a gap.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-31T01:15:34Z",
+    "ref": "main",
+    "repo": "tru-tide",
+    "topics": [],
+    "tree_sha": "5c13dfe624e8de9d3edcd57469fb1f87b5e47eb1",
+    "url": "https://github.com/splashdown1/tru-tide"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 204,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

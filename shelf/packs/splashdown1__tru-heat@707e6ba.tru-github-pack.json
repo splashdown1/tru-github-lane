@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "0d9fff525b97c4421f6f44fb00b8f1d044e89875",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "179693b5b3837aef528cf9c2d04478f57b6d78976e118b821c0bd2e80e168270",
+      "size": 217,
+      "text": "# TRU HEAT\n\nPrevention and recognition only: shade, water, work-rest, early signs, heat exhaustion vs heat stroke distinction.\n\nNo treatment. No invented protocols. A gap stays a gap. Lifeline holds the medical book.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:39+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "2241c7096e03af3ea1cb40b9db1bae8d7976fc043e14b3d599f3573f1c59d4de",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "707e6baab43e8547c264af00bbfae36090622005",
+    "default_branch": "main",
+    "description": "TRU HEAT \u2014 prevention and recognition only. Shade, water, early signs. No treatment. A gap stays a gap.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-31T01:15:09Z",
+    "ref": "main",
+    "repo": "tru-heat",
+    "topics": [],
+    "tree_sha": "17dc43849750a517f66ca47ac3c125a7a36a0db6",
+    "url": "https://github.com/splashdown1/tru-heat"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 217,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

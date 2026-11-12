@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "1e4c7230176264abc06930de35152032375d6b08",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "9c2a545930ff2daffd021412977900f8d57f099fa2829dcf4a32d214bb8319c7",
+      "size": 162,
+      "text": "# TRU-SALT\n\nDraws water out. Seawater is not a drink. No cure schedule.\n\nSave `index.html`. Open it in a browser. If it needs a network to run, it is not a lane.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:59+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "09fd130fa8be043f3819a28ee5d1ebc21cf6c1bc277b22ca9066603d20d8d622",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "68520af0c7872ff24087bf719a2e685ec9e2d449",
+    "default_branch": "main",
+    "description": "TRU SALT \u2014 draws water out. Seawater is not a drink. No cure schedule.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-03T03:12:33Z",
+    "ref": "main",
+    "repo": "tru-salt",
+    "topics": [],
+    "tree_sha": "3027e66fc8728f3bd6cf949aa71cada088e48aca",
+    "url": "https://github.com/splashdown1/tru-salt"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 162,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

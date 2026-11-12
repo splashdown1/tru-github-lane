@@ -1,0 +1,81 @@
+{
+  "files": [
+    {
+      "git_sha": "676288ab6df12d6e5aa825ccc2d3347863092ce2",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "7e990fb1b351389cb67128c1f541d7887c660ddc4f56c18e6f7e8bd897c70abf",
+      "size": 1213,
+      "text": "# TRU \u2014 Canonbound\n\nOffline, non-LLM, **canon-bound** scripture engine. One self-contained HTML file (~31 MB). Zero network at runtime, zero telemetry.\n\n**Run it:** open [the live page](https://splashdown1.github.io/tru-canonbound/TRU.html) in any browser, or download `TRU.html` and open it locally \u2014 it works identically with no internet.\n\n## What it is\n- **Deterministic lanes only** \u2014 every answer comes from a source-backed lookup, never generated text.\n- **Honest GAP** \u2014 when no canon source matches, TRU says so instead of guessing or reframing your question into scripture.\n- **The Socratic follow-up** \u2014 after each answer, one data-derived question assembled from the cross-references, root chains, or Nave's see-also of what was just answered. Always clickable, always answerable offline.\n\n## Sources (public domain)\nKJV \u00b7 Strong's \u00b7 Thayer (1889) \u00b7 BDB (1906) \u00b7 Treasury of Scripture Knowledge \u00b7 Nave's Topical Bible \u00b7 Torrey's Textbook\n\n## Counts\n31,100 KJV verses \u00b7 13,483 Bible words \u00b7 14,088 LOGOS Lexicon entries \u00b7 5,742 topical topics\n\n## Reader\nVoice Bible reader with female/male voice toggle, speed control, position memory \u2014 using only locally installed offline voices.\n"
+    },
+    {
+      "git_sha": "6e5dc656c611cfed662de37dca00120039605c30",
+      "kind": "readme",
+      "lang": "md",
+      "path": "portal/README.md",
+      "sha256": "caab017ce9b5b07d5717f5586ec1d9c614306c0d224427d8330afab17fa0457d",
+      "size": 656,
+      "text": "# TRU Portal Forge\n\nStatic two-page handoff. No server. No telemetry.\n\n- `tru.html` answers only from the KJV lane built into that file.\n- A miss waits 4 seconds, then opens `portal.html#q=...`. Stay cancels it.\n- `portal.html` answers only by quoting a built note or a manual you dropped.\n- Dropped manuals stay in IndexedDB on that browser. Bake writes a portable HTML.\n\nThis is not the 31 MB Canonbound file and not an offline Grok. Put this folder beside `TRU.html` on Pages. Do not replace it.\n\nGitHub Pages: site under about 1 GB, avoid single files over 100 MB. `file://` cannot fetch sibling manuals. The File API plus IndexedDB is the local path.\n"
+    },
+    {
+      "git_sha": "a4fc940cbc4d79c9526c123e5f1678e878870329",
+      "kind": "doc",
+      "lang": "md",
+      "path": "portal/RIP.md",
+      "sha256": "e2a2718ad26dc1ed7d868946ec7400999c3a2cf34fb4a339a41369172c092165",
+      "size": 1367,
+      "text": "# How a page gets into the portal\n\nYou do not run a crawler. You do not beat a login. If the text is not already on your screen, it does not go in.\n\n## Phone path\n\n1. Open the listing or article the normal way.\n2. Copy the visible text. Headline, price, body. Leave the ads.\n3. Open https://splashdown1.github.io/tru-canonbound/portal/portal.html\n4. Paste into \"Paste a page you already opened\". Name the pack for the day you want it readable, not the day you copied it. Example: `2026-10-04 chair`.\n5. Tap Keep this text.\n6. Ask with a word that is actually in the paste, such as the price or \"chair\". The portal quotes the paste. If the word is not in it, the gap stays open.\n\nThe paste stays in this browser only. Nothing is uploaded.\n\n## Delay\n\nName the pack for the release day. Three days out, or fourteen. Do not ask it on the day you copied it if the point is the wait. The folder, or the pack name, is the time-release. The portal does not know the news. It only knows what you kept.\n\n## Card shape\n\n```text\n2026-10-04 \u00b7 craigslist\nWooden chair\n\n$40. Pickup in Mobile. Solid seat, one loose rung.\n```\n\n## What not to do\n\nDo not point a script at a site you are not looking at. Do not paste a page whose body you could not read. A bookmarklet is optional later, and only for a tab you already opened. The paste box is the path that works on the phone today.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:32+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "080f61b5a7b330d524c25df47d8650f4ab873bc03c0dfe7890bd60185d553dc4",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "b1c057569020a83332d164faef7847cdd833b501",
+    "default_branch": "main",
+    "description": "TRU Canonbound \u2014 offline, non-LLM, canon-bound KJV scripture engine. Single self-contained HTML. No network. No telemetry.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T10:10:58Z",
+    "ref": "main",
+    "repo": "tru-canonbound",
+    "topics": [],
+    "tree_sha": "5821d21cd5537e98f43d3e477d896a32849b8ad1",
+    "url": "https://github.com/splashdown1/tru-canonbound"
+  },
+  "stats": {
+    "by_kind": {
+      "doc": 1,
+      "readme": 2
+    },
+    "bytes": 3236,
+    "files": 3,
+    "noise_counts": {
+      "code-or-other": 25
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "98d13e2e778a22a3833402f62e9beae0c06e1dae",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "b592b751c84e477b444a7d1faa04151d5926b7b7439264414198b7996133fd3b",
+      "size": 299,
+      "text": "# TRU SPEAKS\n\nReads a packed line aloud. Stops. Does not listen.\n\nNot TRU Speak. That ship holds fixed Pashto lines. This one reads lines already on Water, Fire, Shelter, Cold, Salt, Sun, Quiet, and Signal.\n\nSave `index.html`. Open it in a browser. Tap Read. Speech recognition is not in this file.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:08:02+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "06dde97afa586adf6a3b3f39271c060b0ea80d746d235dab32d22b94f048ccdf",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "2955587e1e51d12745fc8e10f5c27044bd990c27",
+    "default_branch": "main",
+    "description": "TRU SPEAKS \u2014 reads a packed line aloud. Does not listen.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-03T03:20:03Z",
+    "ref": "main",
+    "repo": "tru-speaks",
+    "topics": [],
+    "tree_sha": "73774dc503ca7a05eb51a6ca4598ee336b9250cd",
+    "url": "https://github.com/splashdown1/tru-speaks"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 299,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

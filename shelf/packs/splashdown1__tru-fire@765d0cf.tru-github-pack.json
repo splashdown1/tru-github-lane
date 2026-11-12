@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "18500f9b546c4867de65b91ad2b00879d588da6d",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "1d6423489b454c86c36e35088cd8a0f85c89ec64d9867d35f8309fee752f9eb3",
+      "size": 170,
+      "text": "# TRU FIRE\n\nFM 21-76 firecraft. Site, a circle at least 1 meter, tinder, kindling, fuel. Dead out means water, stir, water, no heat left. Friction-fire ratios are a gap.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:47+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "1a80c7bd1fd6dedbfe84d464935070a08d23b0a1919e6a1a49ed0a045d91c662",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "765d0cff0fcd091d55b90ea7148bc1eafa90a871",
+    "default_branch": "main",
+    "description": "TRU FIRE \u2014 FM 21-76 site, fuel ladder, dead out. No friction-fire recipe.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T20:43:09Z",
+    "ref": "main",
+    "repo": "tru-fire",
+    "topics": [],
+    "tree_sha": "29363bbdf285d692420ab257a9b60b099fb0c653",
+    "url": "https://github.com/splashdown1/tru-fire"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 170,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}
