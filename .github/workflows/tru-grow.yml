@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       min_age_days:
-        description: "Minimum source-commit age in days (0 for bootstrap)"
+        description: "Minimum source-commit age in days (0 for bootstrap; default is the 6-day verification buffer)"
         required: false
-        default: "7"
+        default: "6"
       repos:
         description: "Optional space-separated owner/repo[@ref] list; overrides shelf/watchlist.txt when set"
         required: false
@@ -34,7 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           MIN_AGE="${{ github.event.inputs.min_age_days }}"
-          if [ -z "${MIN_AGE}" ]; then MIN_AGE=7; fi
+          if [ -z "${MIN_AGE}" ]; then MIN_AGE=6; fi
           echo "min_age=${MIN_AGE}" >> "$GITHUB_OUTPUT"
 
           INPUT_REPOS="${{ github.event.inputs.repos }}"
@@ -113,11 +113,12 @@ jobs:
           delete-branch: true
           title: "TRU grow: new shelf entries for review"
           body: |
-            Automated intake.
+            Automated intake (closed-loop).
 
             - Packs were pulled with full commit SHAs and proposed through `tools/tru_shelf.py`.
             - Entries were approved onto this branch by `tru-grow[bot]` so the diff is the shelf delta.
             - **Merging this PR is the human approval** that lands established items on `main`.
+            - 6-day verification buffer applies by default (override with workflow input).
 
             Inputs: `min_age_days=${{ steps.watch.outputs.min_age }}`, repos=`${{ steps.watch.outputs.repos }}`
 
@@ -127,4 +128,4 @@ jobs:
             TRU grow: shelf proposals
 
             Proposed and branch-approved via tools/tru_propose.py + tru_shelf.py.
-            Merge = establish on main.
+            Merge = establish on main. 6-day buffer enforced.
