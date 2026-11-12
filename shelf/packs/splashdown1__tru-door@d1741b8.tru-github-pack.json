@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "d928009e237e1435fe14ed557fbb34a4ac2b4cf5",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "82d21ae88e860ae26ef838ccfb40f8b74b79e52d3d3ab820d2bd7a65de4f9c2b",
+      "size": 338,
+      "text": "# TRU DOOR\n\nPoints the ask at the ship that holds the card. A miss is a gap.\n\nSave `index.html`. Open it in a browser. The match runs on the page. The links are the doors. If a word matches no lane, the card says not packed.\n\nThis page does not answer the ask. Lifeline, Water, Fire, Shelter, Cold, and Pantry still hold the storm cards.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:34+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "300b0b581c355e2ab0dc15203df66a65d875297e906a215b5dd05bdaad3f39fd",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "d1741b8db31c385a91748dbaf8da67dde8671361",
+    "default_branch": "main",
+    "description": "TRU DOOR \u2014 points the ask at the ship that holds the card. A miss is a gap.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-22T21:59:45Z",
+    "ref": "main",
+    "repo": "tru-door",
+    "topics": [],
+    "tree_sha": "eb97f3084b9a73cdd0ce73fe7335c302bc6f6c34",
+    "url": "https://github.com/splashdown1/tru-door"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 338,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

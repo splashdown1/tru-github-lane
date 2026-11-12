@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "b341eb42cd724617315ed9ddaaaf516f2ca8d366",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "75bcffad3119522a0b089512ed9859d71c64317f3b9e38993b4a6e4c3f6cafea",
+      "size": 237,
+      "text": "# TRU HITCH\n\nExtra working hitches and bends beyond the six in Cord: trucker\u2019s, constrictor, prusik, alpine butterfly, rolling hitch, timber hitch, and related.\n\nSteps only. Dress and set. Practice with scrap before it holds a person.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:40+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "6902357bb4bef30959597c49012667dbd200cc8cfcaa9c60ba01dbf6e92f733e",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "0e416d88c70c90841f16dcd188a43d18ca2b633d",
+    "default_branch": "main",
+    "description": "TRU HITCH \u2014 extra working hitches beyond Cord. Trucker\u2019s, constrictor, prusik, alpine butterfly, rolling, timber. Steps only.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-31T01:14:29Z",
+    "ref": "main",
+    "repo": "tru-hitch",
+    "topics": [],
+    "tree_sha": "5990921fbd7633a936724c6ff8f2f9aadb5e9d84",
+    "url": "https://github.com/splashdown1/tru-hitch"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 237,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "ff42bcbccc99f67f291161020ba91e72eae4e1b8",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "8d8491ca9c140e149f81af3402d04039d41651577b93d157ca317f61926bced5",
+      "size": 287,
+      "text": "# TRU JOIN\n\nA folder, not a fusion. Packed 2 October 2026.\n\nTalk is Speaks. Reason is Door. Law is Rules. The Word is Canonbound. The body is the storm cards. Place is the city list. Remembering stays on the phone that taught it. No spirit vector.\n\nSave `index.html`. It does not fetch.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:08:10+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "e38b27c18440f2739661ac676c85a1d1ea3d94e067a1733eb244e64759fa97e7",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "85be52cdf8d2887106bed9eb288e8d66ac21dcbf",
+    "default_branch": "main",
+    "description": "TRU JOIN \u2014 a folder, not a fusion. Packed 2 October 2026.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-22T18:26:22Z",
+    "ref": "main",
+    "repo": "tru-join",
+    "topics": [],
+    "tree_sha": "6ae65c23b527e44d50b10e5f16a098525aedcc1f",
+    "url": "https://github.com/splashdown1/tru-join"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 287,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 3
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

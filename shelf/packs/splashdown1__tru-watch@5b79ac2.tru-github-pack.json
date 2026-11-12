@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "1fa4feb160de231cca8a3bcac1f5b7a3dc74f4d4",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "4a64bf4af3173d9bc079f4eb70a60d6ec1b4ff9e43e841dc85c617340a225391",
+      "size": 273,
+      "text": "# TRU WATCH\n\nOne awake. A relief who does not leave the last person until the word and the ground are passed. FM 22-6: the one on watch gives the challenge, the one arriving gives the password, in a low tone. The watch does not say the password first. Not a sentry manual.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:53+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "058fcac941b3d486ce3d7466802e4b8b2c189dc79b1a3238bd289c8b98a9e748",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "5b79ac2012628b5bb6b85ea014d34fd006e6ecab",
+    "default_branch": "main",
+    "description": "TRU WATCH \u2014 one awake, a relief, a challenge word. FM 22-6. Not a sentry manual.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T22:07:53Z",
+    "ref": "main",
+    "repo": "tru-watch",
+    "topics": [],
+    "tree_sha": "e2b13ebfdd34b0684d4677811883337a0be81c73",
+    "url": "https://github.com/splashdown1/tru-watch"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 273,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

@@ -1,0 +1,90 @@
+{
+  "files": [
+    {
+      "git_sha": "a5702d92238aac0d70789be0fd77c4aae197c9b2",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "e3e9b3174e00e3639028d06f0f836a550af7c7a081fc47fc087111afb5a59883",
+      "size": 2956,
+      "text": "# TRU Sovereign Search Engine v2.0\n\n**Air-gapped \u2022 Zero external dependencies \u2022 IndexedDB persistent**\n\nLocal **knowledge index** for the TRU offline network. It indexes what you load into it. It does not replace the domain lanes.\n\n## What this is\n\n- A single-file BM25 search UI over a **local** document set\n- Structured seed: ~48 core KJV verses + TRU architecture cards\n- Optional **packs** under `packs/` (network map, signal, water, storm bridges)\n- Persistent notes and a lightweight relationship graph (IndexedDB)\n- Import / export so the working set can move by hand between devices\n\n## What this is not\n\n| Need | Use instead |\n|------|-------------|\n| Full KJV + lexicon / cross-refs | [Canonbound](https://github.com/splashdown1/tru-canonbound) |\n| FM 21-76 / FM 21-11 survival & first aid | [Lifeline](https://github.com/splashdown1/tru-lifeline) |\n| Full distress / Morse / panel engine | [Signal](https://github.com/splashdown1/tru-signal) |\n| EPA dose UI as its own card | [Water](https://github.com/splashdown1/tru-water) |\n| Routing \u201cwhich ship holds this ask?\u201d | [Door](https://github.com/splashdown1/tru-door) |\n| Catalog of all lanes | [Shelf](https://github.com/splashdown1/tru-shelf) |\n\nPacks may **point at** those lanes or carry short sourced cards. They are not the full engines.\n\n## Role in the fleet\n\n| Layer | Job |\n|-------|-----|\n| **Shelf** | Catalog of lanes |\n| **Door** | Routes the ask to the right ship |\n| **Search** | Indexes what *you* hold locally |\n| **Lanes** | Domain cards (Canonbound, Lifeline, \u2026) |\n| **Rules** | One file. A gap stays a gap. No call out. |\n\nLive: https://splashdown1.github.io/tru-search-engine/\n\n## How to use\n\n1. Open `index.html` or the Pages URL.\n2. Search the embedded seed; filter by book/tag; add notes; follow related edges.\n3. **IMPORT** a pack from `packs/` (paste JSON) to expand the local index.\n4. **EXPORT** to move docs + edges + notes offline.\n\n## Packs\n\n| Pack | Contents |\n|------|----------|\n| `tru-network-pack.json` | Rules + Shelf/Door/Search map |\n| `tru-signal-pack.json` | Sourced distress/panel cards (full engine remains Signal) |\n| `tru-water-pack.json` | EPA-aligned disinfection notes (full engine remains Water) |\n| `tru-storm-pack.json` | Bridges to Lifeline and storm lanes \u2014 not medical advice |\n| `tru-seed-full.json` | Larger structured seed for import |\n\n## GitHub Pages\n\n**Live source today:** branch **`gh-pages`**, root (`/`).  \nURL: https://splashdown1.github.io/tru-search-engine/\n\n`.nojekyll` is on the repo. A workflow at `.github/workflows/pages.yml` can deploy from `main` if you switch Pages \u2192 **GitHub Actions** and re-run the workflow; until then, keep **`gh-pages`** in sync when content changes.\n\n## Design constraints\n\n- Zero network calls after the file is saved\n- Pure vanilla JS, single-file HTML\n- A gap stays a gap \u2014 no invention, no remote fallback\n\n---\n\n**TRU** \u2014 Clarity toward salvation. Sovereign. Offline. Free.\n"
+    },
+    {
+      "git_sha": "01c8266cb4136b5feb883915f30fd48dacd66280",
+      "kind": "config",
+      "lang": "yml",
+      "path": ".github/workflows/daily-checkpoint.yml",
+      "sha256": "295770913dd2c264fe5da569e0f0a3c2f9b96d9a33c4e11e448f658f0683cd31",
+      "size": 1958,
+      "text": "name: Daily Integrity Checkpoint\n\non:\n  schedule:\n    - cron: '0 0 * * *'\n  workflow_dispatch:\n\npermissions:\n  contents: write\n\njobs:\n  checkpoint:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout gh-pages (live tree)\n        uses: actions/checkout@v4\n        with:\n          ref: gh-pages\n\n      - name: Rebuild REF.json from artifacts\n        run: |\n          python3 << 'PY'\n          import hashlib, json, os, datetime\n          def sha(path):\n            with open(path, 'rb') as f:\n              return hashlib.sha256(f.read()).hexdigest()\n          packs = {}\n          if os.path.isdir('packs'):\n            for name in sorted(os.listdir('packs')):\n              if name.endswith('.json'):\n                packs[name] = sha(os.path.join('packs', name))\n          ref = {\n            \"v\": \"2.0.0\",\n            \"as_of\": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),\n            \"role\": \"integrity marker only \u2014 does not feed the index\",\n            \"index_sha256\": sha('index.html') if os.path.exists('index.html') else None,\n            \"seed_sha256\": sha('tru-seed-full.json') if os.path.exists('tru-seed-full.json') else None,\n            \"packs_sha256\": packs,\n            \"pages\": \"https://splashdown1.github.io/tru-search-engine/\",\n            \"note\": \"Compare locally when radio is on. Drift is a fact, not an auto-update. A gap stays a gap.\"\n          }\n          open('REF.json', 'w').write(json.dumps(ref, indent=2) + '\\n')\n          print(json.dumps(ref, indent=2))\n          PY\n\n      - name: Commit if REF changed\n        run: |\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"github-actions[bot]@users.noreply.github.com\"\n          git add REF.json\n          if git diff --staged --quiet; then\n            echo \"No REF change\"\n          else\n            git commit -m \"Daily integrity checkpoint $(date -u +%Y-%m-%d)\"\n            git push origin HEAD:gh-pages\n          fi\n"
+    },
+    {
+      "git_sha": "598208d2fb7f7c440ab2fd987b4d6a3465b9aa6d",
+      "kind": "config",
+      "lang": "yml",
+      "path": ".github/workflows/patch-search-boot-fallback.yml",
+      "sha256": "f31d1292308526b77f645b4ab2570c3fbf44d91e7feba17e797fbd681679f059",
+      "size": 2279,
+      "text": "name: Patch Search boot fallback\n\non:\n  workflow_dispatch:\n  push:\n    paths:\n      - '.github/workflows/patch-search-boot-fallback.yml'\n\npermissions:\n  contents: write\n\njobs:\n  patch:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          ref: gh-pages\n\n      - name: Apply memory-only boot fallback\n        run: |\n          python3 << 'PY'\n          from pathlib import Path\n          p = Path('index.html')\n          html = p.read_text(encoding='utf-8')\n          old = '''catch(err){console.error(err);setSt(\"ERROR\",\"bad\");sb.textContent=\"Index failure: \"+(err.message||err);document.getElementById(\"rs\").innerHTML=`<div class=\"empty\">Local storage error.</div>`}\\n}'''\n          new = '''catch(err){console.error(err);setSt(\"MEM\",\"warn\");\\ntry{docs=merge([]);edges=[...SEDGES];idx=build(docs);ready=true;qi.disabled=false;fillFilters();\\nsb.textContent=\"Memory only \u2022 storage blocked \u2022 \"+docs.length+\" seed nodes \u2022 search works\";\\nqi.focus();render([]);}catch(e2){sb.textContent=\"Index failure: \"+(err.message||err);\\ndocument.getElementById(\"rs\").innerHTML=`<div class=\"empty\">Local storage error. Try a normal (non-private) window.</div>`}\\n}\\n}'''\n          if old not in html:\n              if 'Memory only' in html:\n                  print('Already patched')\n              else:\n                  raise SystemExit('catch block not found')\n          else:\n              html = html.replace(old, new, 1)\n              html = html.replace('const VER=\"2.0.0\"', 'const VER=\"2.0.2\"', 1)\n              html = html.replace('AIR-GAPPED \u2022 LOCAL ONLY \u2022 v2.0', 'AIR-GAPPED \u2022 LOCAL ONLY \u2022 v2.0.2', 1)\n              html = html.replace('TRU Sovereign Search Engine v2.0', 'TRU Sovereign Search Engine v2.0.2', 1)\n              p.write_text(html, encoding='utf-8')\n              print('Patched', len(html))\n          PY\n\n      - name: Commit\n        run: |\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"github-actions[bot]@users.noreply.github.com\"\n          git add index.html\n          if git diff --staged --quiet; then echo No change; else\n            git commit -m \"v2.0.2 \u2014 enable search when IndexedDB blocked (memory seed)\"\n            git push origin HEAD:gh-pages\n          fi\n"
+    },
+    {
+      "git_sha": "a4caa1e6ce97032b41ccb388f0ab0a8184a3da81",
+      "kind": "config",
+      "lang": "yml",
+      "path": ".github/workflows/sync-index-from-gh-pages.yml",
+      "sha256": "771c40b3d9a9a6ad7672744347bf208667d0fae147bb0eb581b339f6d5240f94",
+      "size": 1130,
+      "text": "name: Sync index from gh-pages\n\non:\n  workflow_dispatch:\n  push:\n    paths:\n      - '.github/workflows/sync-index-from-gh-pages.yml'\n\npermissions:\n  contents: write\n\njobs:\n  sync:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout main\n        uses: actions/checkout@v4\n        with:\n          ref: main\n          path: main-tree\n\n      - name: Checkout gh-pages\n        uses: actions/checkout@v4\n        with:\n          ref: gh-pages\n          path: live-tree\n\n      - name: Copy full engine onto main\n        run: |\n          cp live-tree/index.html main-tree/index.html\n          # Prefer single-file; drop external engine.js if present\n          rm -f main-tree/engine.js\n          cd main-tree\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"github-actions[bot]@users.noreply.github.com\"\n          git add index.html\n          git add -u engine.js || true\n          if git diff --staged --quiet; then\n            echo \"Already in sync\"\n          else\n            git commit -m \"Sync full single-file index.html from gh-pages\"\n            git push origin HEAD:main\n          fi\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:30+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "6a386808c3df366c8a11bc6bc69fea95fd84ecc764bc2524e1497ca4f3c362ad",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "d7682ae3f9b76ae9751c015b54eceaafb1a5af25",
+    "default_branch": "main",
+    "description": "TRU Sovereign Search Engine v1.2 \u2014 Air-gapped, IndexedDB-persistent, BM25-lite local knowledge search. Zero external dependencies. Pure vanilla JS single-file.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-11-11T03:58:35Z",
+    "ref": "main",
+    "repo": "tru-search-engine",
+    "topics": [],
+    "tree_sha": "d22beab4dabe087ab66b47455fc1fe182670deb0",
+    "url": "https://github.com/splashdown1/tru-search-engine"
+  },
+  "stats": {
+    "by_kind": {
+      "config": 3,
+      "readme": 1
+    },
+    "bytes": 8323,
+    "files": 4,
+    "noise_counts": {
+      "code-or-other": 8
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

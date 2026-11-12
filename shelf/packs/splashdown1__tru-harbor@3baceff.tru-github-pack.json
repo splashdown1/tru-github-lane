@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "6a15781b9438080929c3a5f1fd4c366d86248e7a",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "68eb0ae29d66ef22ddcfd2b6fc1b5f21627ca6580b674a75a6b843a93044316e",
+      "size": 496,
+      "text": "# TRU Lane \u2014 Archived\n\n**Status:** Frozen\n\nThis repository has been audited and frozen.\n\nIt no longer represents an active public lane. Experimental, synthetic, or non-source-bound material has been set aside in favor of the current source-bound baseline.\n\n**Continuity**\n\nActive work, Canon Mode principles, Eye Optics Core, and the public Shelf live here:\n\n\u2192 https://github.com/splashdown1/tru-recovery\n\n---\n\n\u201cProve all things; hold fast that which is good.\u201d  \n\u2014 1 Thessalonians 5:21\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:08:06+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "6652808aef2c41a48a0a8a6eb03f3432f66a6a72ac74983cb82ad1035edaef61",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "3baceffaffb741a0ed52ffc9d1111fac2f51252b",
+    "default_branch": "main",
+    "description": "TRU HARBOR \u2014 reads the public ships. Needs the radio. Not a lane.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-26T01:14:37Z",
+    "ref": "main",
+    "repo": "tru-harbor",
+    "topics": [],
+    "tree_sha": "3abaa5999e09f1b23af85589cc4139738bf42ce5",
+    "url": "https://github.com/splashdown1/tru-harbor"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 496,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}
