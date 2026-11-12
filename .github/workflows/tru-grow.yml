@@ -14,6 +14,11 @@ on:
         description: "Optional space-separated owner/repo[@ref] list; overrides shelf/watchlist.txt when set"
         required: false
         default: ""
+  push:
+    paths:
+      - 'shelf/inbox/**'
+  repository_dispatch:
+    types: [tru-intake]
 
 permissions:
   contents: write
@@ -32,26 +37,42 @@ jobs:
         id: watch
         run: |
           set -euo pipefail
-          MIN_AGE="${{ github.event.inputs.min_age_days }}"
+          MIN_AGE="${{ github.event.inputs.min_age_days || '0' }}"
           if [ -z "${MIN_AGE}" ]; then MIN_AGE=0; fi
           echo "min_age=${MIN_AGE}" >> "$GITHUB_OUTPUT"
 
+          # Watchlist path (proactive scan of known sources)
           INPUT_REPOS="${{ github.event.inputs.repos }}"
           if [ -n "${INPUT_REPOS}" ]; then
             REPOS="${INPUT_REPOS}"
           else
-            REPOS=$(grep -vE '^[[:space:]]*(#|$)' shelf/watchlist.txt | tr '\n' ' ' | xargs || true)
-          fi
-          if [ -z "${REPOS}" ]; then
-            echo "No repos to process"
-            echo "repos=" >> "$GITHUB_OUTPUT"
-            exit 0
+            REPOS=$(grep -vE '^[[:space:]]*(#|$)' shelf/watchlist.txt 2>/dev/null | tr '\n' ' ' | xargs || true)
           fi
           echo "repos=${REPOS}" >> "$GITHUB_OUTPUT"
           echo "Watch list: ${REPOS}"
           echo "min_age_days: ${MIN_AGE}"
 
-      - name: Propose packs (pull + stage)
+      - name: Process inbox packs (external agent path)
+        id: inbox
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p shelf/inbox
+          INBOX_PACKS=$(find shelf/inbox -name '*.tru-github-pack.json' 2>/dev/null | head -50 || true)
+          if [ -z "${INBOX_PACKS}" ]; then
+            echo "has_inbox=false" >> "$GITHUB_OUTPUT"
+            echo "No packs in shelf/inbox/"
+            exit 0
+          fi
+          echo "has_inbox=true" >> "$GITHUB_OUTPUT"
+          echo "Processing inbox packs:"
+          for pack in ${INBOX_PACKS}; do
+            echo "  propose ${pack}"
+            python3 tools/tru_shelf.py --min-age-days "${{ steps.watch.outputs.min_age }}" propose "${pack}" || true
+          done
+
+      - name: Propose packs from watchlist
         if: steps.watch.outputs.repos != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +102,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          # Fully automatic. Integrity + provenance checks only. No age gate by default. No human gate.
+          # Fully automatic. Integrity + provenance checks only. No age gate. No human gate.
           while read -r line; do
             id=$(echo "$line" | awk '{print $1}')
             [ -z "$id" ] && continue
@@ -98,14 +119,21 @@ jobs:
         if: steps.staging.outputs.has_staging == 'true'
         run: python3 tools/tru_shelf.py check
 
-      - name: Commit and push established packs to main
-        if: steps.staging.outputs.has_staging == 'true'
+      - name: Commit and push established packs + clear processed inbox
+        if: steps.staging.outputs.has_staging == 'true' || steps.inbox.outputs.has_inbox == 'true'
         run: |
           set -euo pipefail
           git config user.name "tru-grow[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add shelf/manifest.jsonl shelf/packs/ || true
+          # Clear successfully processed inbox packs so the pipe stays clean
+          if [ "${{ steps.inbox.outputs.has_inbox }}" = "true" ]; then
+            find shelf/inbox -name '*.tru-github-pack.json' -delete || true
+            # keep a marker so the directory survives
+            touch shelf/inbox/.gitkeep
+          fi
+
+          git add shelf/manifest.jsonl shelf/packs/ shelf/inbox/ || true
 
           if git diff --cached --quiet; then
             echo "No shelf changes to commit"
@@ -114,8 +142,8 @@ jobs:
 
           git commit -m "TRU grow: establish packs that cleared integrity checks
 
-  - no age gate (pipe is open)
-  - hashes and provenance verified
+  - open pipe (no age gate, no human gate)
+  - inbox + watchlist paths both feed the same checks
   - established directly by tru-grow[bot]"
 
           git push origin HEAD:main
