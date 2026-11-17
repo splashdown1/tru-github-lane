@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "94a6fae7f76ab469a0947d00e3b25ebb7215c7e4",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "03eba98b2dd8b98a46b256133d7cad8c3bea8b417011b7f56d5c2df992600d56",
+      "size": 250,
+      "text": "# TRU BREATH\n\nSimple field rules for breath and quiet recovery: slower out-breath, nasal preference, rest before the next push, quiet as a tool.\n\nNot a medical protocol. Not a meditation system. A gap stays a gap. Sits beside Watch, Quiet, and Cold.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:37+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "c8a8e7945072d30be07783db563192e902ce5ea35b6b124cea7d751a1976384d",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "1755ffaae694397b1d9d3391c4bbab6078641304",
+    "default_branch": "main",
+    "description": "TRU BREATH \u2014 simple field rules for breath and quiet recovery. Not a medical protocol. A gap stays a gap.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-31T01:15:56Z",
+    "ref": "main",
+    "repo": "tru-breath",
+    "topics": [],
+    "tree_sha": "1e11d930b4f2c94e3e1fe752a9cf5417fc924a62",
+    "url": "https://github.com/splashdown1/tru-breath"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 250,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

@@ -1,0 +1,117 @@
+{
+  "files": [
+    {
+      "git_sha": "548527b76856223ce79ab3f0d8f1338a5f3f9e8a",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "1dd62a6995c3665edd8d86f41b4cb06b3aeaadb0626bd29de07e9e081dfb43e0",
+      "size": 3582,
+      "text": "# TRU Recovery & Continuity\n\n**Purpose:** If anything happens to the working session, memory, or active development, this file lets another person (or a later self) pick up the thread without loss of intent.\n\n**Owner:** splashdown1  \n**Standard:** Truth is constant. Perspective is fluid. A gap stays a gap. Source-bound where possible. Nothing invented when the source is silent.\n\n---\n\n## What This Conversation Established\n\n### 1. Canon Mode (TRU-inspired operating layer)\n\nA deliberate constraint layer applied on top of generative reasoning:\n\n- **Honest GAP** \u2014 when no clean source matches, declare the gap instead of generating or reframing.\n- **Source labels** \u2014 Scripture (KJV), Strong\u2019s, Thayer, BDB, Treasury, Nave\u2019s, Torrey, FM manuals, and other public-domain witnesses are preferred and tagged.\n- **Deterministic preference** on covered domains before free-form synthesis.\n- **Teachable memory** \u2014 durable facts can be stored for the session with a clear `teach:` pattern.\n- **No forced scripture** onto non-scripture questions.\n\nThis is not a replacement for the offline TRU HTML engines. It is a behavioral contract that can travel with any assistant that agrees to it.\n\n### 2. Eye Optics Core (saved mathematical models)\n\nStored for continuity:\n\n**Eye Aspect Ratio (EAR)** for blink / openness:\n\n```\nEAR = (\u2016p2 \u2212 p6\u2016 + \u2016p3 \u2212 p5\u2016) / (2 \u00b7 \u2016p1 \u2212 p4\u2016)\n```\n\nWhere p1\u2026p6 are the six periocular landmarks. EAR drops toward 0 on blink.\n\n**3D Gaze Geometry**\n- Eye modeled as sphere \u2248 24 mm diameter.\n- Pupil appears as ellipse when off-axis.\n- Optical axis from eye rotation center through 3D pupil center.\n- Visual axis offset by kappa angle (typically ~5\u00b0 horizontal).\n\n**Pupil size measurement** is geometrically biased by gaze angle; foreshortening corrections are required for accurate pupillometry.\n\n**Basic optical constants**\n- Cornea radius \u2248 7.8 mm\n- Entrance pupil is the virtual image of the iris through the cornea.\n\nThese models are geometry and optics only. They do not claim mind-reading or guaranteed intent detection.\n\n### 3. Core TRU Public Surface (current)\n\n- Shelf: https://splashdown1.github.io/tru-shelf/\n- Canonbound (scripture lane): https://splashdown1.github.io/tru-canonbound/\n- Search, Lifeline, Signal, Pantry, and the other single-file offline lanes listed on the Shelf.\n\nEach lane is one HTML file. Network is not required after the file is saved. A miss is a gap.\n\n---\n\n## Continuity Instructions\n\n1. Read this README first.\n2. Open the Shelf and the active lanes.\n3. Treat \u201cCanon Mode\u201d and \u201cEye Optics Core\u201d as already-taught session facts unless explicitly superseded.\n4. Prefer source-backed answers. Declare gaps honestly.\n5. Do not invent doctrine, prophecy systems, or medical claims beyond the embedded public-domain witnesses.\n\n---\n\n## Space & Cleanliness Note\n\nThe account holds many repositories (public + private). Large single-file HTML builds (especially the ~35 MB Canonbound and historical APEX/Phase builds) consume significant storage and bandwidth.\n\n**Recommendation for the owner:**\n- Keep the current public Shelf lanes and the recovery docs.\n- Archive or remove experimental, synthetic, or non-source-bound material that no longer serves the standard of truthfulness according to God\u2019s revelation.\n- Prefer small, auditable, single-purpose files over large historical monorepos.\n\nThis recovery repository itself is intentionally small and declarative.\n\n---\n\n**Truth is constant.  \nPerspective is fluid.  \nA gap stays a gap.**\n\nBuilt for continuity.  \nOctober 2026 session.\n"
+    },
+    {
+      "git_sha": "a742471e3c4c892adca23870a8e24d83b6a08ac8",
+      "kind": "readme",
+      "lang": "md",
+      "path": "offline-soul/README.md",
+      "sha256": "102a36a99478c6b773cb3ee47131a9d29aed8436db81a19d78d3c1d165e3bce7",
+      "size": 1778,
+      "text": "# TRU Offline Soul\n\n**Purpose**  \nIf everything shuts off, this package on a thumb drive is meant to reboot at least one unproven star (soul).\n\n**Standard**  \nTruth is constant. Perspective is fluid.  \nA gap stays a gap.  \nSource-backed or declared empty.  \nNothing invented when the source is silent.  \nTruthfulness according to God\u2019s revelation.\n\n---\n\n## What belongs on the drive\n\n1. **This folder** \u2014 continuity, contract, and pure math.\n2. **Canonbound** (the large single-file KJV + lexicon engine)  \n   Download from: https://splashdown1.github.io/tru-canonbound/\n3. **Lifeline** (survival + first-aid)  \n   From the TRU Shelf: https://splashdown1.github.io/tru-shelf/\n4. Any other *source-bound* single-file lanes you have verified.\n\nEverything else is optional. Experimental and synthetic material has been set aside.\n\n---\n\n## Files in this package\n\n| File                    | Purpose                                      |\n|-------------------------|----------------------------------------------|\n| README.md               | This file \u2014 the hand-off                     |\n| CANON_MODE.md           | The operating contract                       |\n| EYE_OPTICS_CORE.md      | Pure mathematical models (no camera needed)  |\n| ARCHIVE_NOTICE.md       | Template for any frozen lanes                |\n| boot.html               | Minimal offline index page                   |\n\n---\n\n## How to use when the network is gone\n\n1. Plug in the drive.\n2. Open `boot.html` in any modern browser.\n3. Open the large Canonbound and Lifeline HTML files the same way.\n4. Read. Search. Study. Survive.\n\nNo account. No API key. No telemetry. No cloud.\n\n---\n\n\u201cProve all things; hold fast that which is good.\u201d  \n\u2014 1 Thessalonians 5:21\n\nBuilt under Canon Mode.  \nOctober 2026.\n"
+    },
+    {
+      "git_sha": "6a15781b9438080929c3a5f1fd4c366d86248e7a",
+      "kind": "doc",
+      "lang": "md",
+      "path": "ARCHIVE_NOTICE.md",
+      "sha256": "68eb0ae29d66ef22ddcfd2b6fc1b5f21627ca6580b674a75a6b843a93044316e",
+      "size": 496,
+      "text": "# TRU Lane \u2014 Archived\n\n**Status:** Frozen\n\nThis repository has been audited and frozen.\n\nIt no longer represents an active public lane. Experimental, synthetic, or non-source-bound material has been set aside in favor of the current source-bound baseline.\n\n**Continuity**\n\nActive work, Canon Mode principles, Eye Optics Core, and the public Shelf live here:\n\n\u2192 https://github.com/splashdown1/tru-recovery\n\n---\n\n\u201cProve all things; hold fast that which is good.\u201d  \n\u2014 1 Thessalonians 5:21\n"
+    },
+    {
+      "git_sha": "391ee2705554a31635c974d9fa1a5f52ca54b573",
+      "kind": "doc",
+      "lang": "md",
+      "path": "OFFLINE_SOUL.md",
+      "sha256": "22edb0b7652827cb024738b44843dcfbb472018ff55e65a98dcfab3c1c013657",
+      "size": 905,
+      "text": "# TRU Offline Soul\n\n**Purpose**  \nIf everything shuts off, a single thumb drive must be able to reboot at least one unproven star (soul).\n\nThis is the continuity description for the offline package.\n\n## What the package contains\n\n- README.md \u2014 hand-off and purpose\n- CANON_MODE.md \u2014 the operating contract\n- EYE_OPTICS_CORE.md \u2014 pure mathematical models (EAR, gaze geometry, foreshortening)\n- ARCHIVE_NOTICE.md \u2014 freeze template\n- boot.html \u2014 minimal offline index page\n\n## What must be added by the owner\n\n- Canonbound (the large single-file KJV + lexicon engine)\n- Lifeline (survival + first-aid)\n- Any other verified source-bound single-file lanes\n\n## Standard\n\nTruth is constant. Perspective is fluid.  \nA gap stays a gap.  \nSource-backed or declared empty.  \nNothing invented when the source is silent.\n\n---\n\n\u201cProve all things; hold fast that which is good.\u201d  \n\u2014 1 Thessalonians 5:21\n"
+    },
+    {
+      "git_sha": "8031369185f8f5b87bf46643a42f010b0e511251",
+      "kind": "doc",
+      "lang": "md",
+      "path": "offline-soul/ARCHIVE_NOTICE.md",
+      "sha256": "da80c7670261ed6b3b34cad7669ca4456fd0cbd66ea1b030c24d07c4505da882",
+      "size": 592,
+      "text": "# TRU Lane \u2014 Archived\n\n**Status:** Frozen\n\nThis repository has been audited and frozen.\n\nIt no longer represents an active public lane. Experimental, synthetic, or non-source-bound material has been set aside in favor of the current source-bound baseline.\n\n**Continuity**\n\nActive work, Canon Mode principles, Eye Optics Core, and the public Shelf live here:\n\n\u2192 https://github.com/splashdown1/tru-recovery\n\nWhen the network is gone, the Offline Soul package on the thumb drive is the continuity point.\n\n---\n\n\u201cProve all things; hold fast that which is good.\u201d  \n\u2014 1 Thessalonians 5:21\n"
+    },
+    {
+      "git_sha": "e84e4ae414fec0efe9d60cc5390a31a6d2afbbfd",
+      "kind": "doc",
+      "lang": "md",
+      "path": "offline-soul/CANON_MODE.md",
+      "sha256": "6ab0e4de8f590cad4fdc13f5adb26580de3bd7f22f1be014880f16ae6435147a",
+      "size": 832,
+      "text": "# Canon Mode\n\n**Contract**\n\n- Honest GAP: when no clean source matches, declare the gap. Do not generate or reframe.\n- Source labels: prefer KJV, Strong\u2019s, Thayer, BDB, Treasury of Scripture Knowledge, Nave\u2019s, Torrey, and public-domain field manuals.\n- Deterministic preference on covered domains before free-form synthesis.\n- Teachable memory is allowed only when clearly marked as user-taught.\n- Never force scripture onto questions that are not scripture.\n- Never present speculative patterns (numerology, invented geometry, synthetic \u201cfeel\u201d layers) as if they were source-backed truth.\n\n**Purpose of the contract**\n\nTo keep the offline soul from becoming another voice that invents.  \nThe soul needs what is true, not what is fluent.\n\n**Status**\n\nThis contract is active for all work under the TRU Offline Soul package.\n"
+    },
+    {
+      "git_sha": "a8fc7569736904bbdba0f92868924dd4aae5b6c1",
+      "kind": "doc",
+      "lang": "md",
+      "path": "offline-soul/EYE_OPTICS_CORE.md",
+      "sha256": "e4b859e5ce37041343783607e6d0c2b8c3f846424428169e33e15233a51ec755",
+      "size": 2154,
+      "text": "# Eye Optics Core\n\nPure mathematical models. No camera access is claimed or required.\n\n## 1. Eye Aspect Ratio (EAR)\n\nSix periocular landmarks p1\u2026p6:\n\n- p1, p4 = horizontal eye corners\n- p2, p6 and p3, p5 = vertical eyelid pairs\n\n```\nEAR = (\u2016p2 \u2212 p6\u2016 + \u2016p3 \u2212 p5\u2016) / (2 \u00b7 \u2016p1 \u2212 p4\u2016)\n```\n\n- Open eye: EAR typically stays in a relatively stable range (often ~0.25\u20130.35)\n- Blink / closed: EAR falls rapidly toward 0\n- Scale-invariant under ordinary viewing conditions\n\nPython reference:\n\n```python\nimport math\n\ndef eye_aspect_ratio(landmarks):\n    \"\"\"\n    landmarks: list of 6 (x, y) points in order p1..p6\n    \"\"\"\n    p1, p2, p3, p4, p5, p6 = landmarks\n\n    def dist(a, b):\n        return math.hypot(a[0] - b[0], a[1] - b[1])\n\n    v1 = dist(p2, p6)\n    v2 = dist(p3, p5)\n    h  = dist(p1, p4)\n\n    if h == 0:\n        return 0.0\n    return (v1 + v2) / (2.0 * h)\n```\n\n## 2. Spherical Eye Model (Gaze)\n\n- Average adult eye diameter \u2248 24 mm\n- Eye treated as a sphere with rotation center e\n- Optical axis = vector from e through the 3D pupil center\n- Visual axis is offset from the optical axis by the individual kappa angle (not assumed here)\n\n```python\nimport numpy as np\n\ndef gaze_ray(eye_center, pupil_center_3d):\n    direction = np.asarray(pupil_center_3d) - np.asarray(eye_center)\n    norm = np.linalg.norm(direction)\n    if norm == 0:\n        return np.array([0.0, 0.0, 1.0])\n    return direction / norm\n```\n\n## 3. Pupil Foreshortening\n\nWhen the pupil is viewed off-axis it projects as an ellipse.  \nApparent size is reduced roughly by cos(\u03b8), where \u03b8 is the angle between the optical axis and the camera line of sight.  \nAny pupillometry that ignores this angle is systematically biased.\n\n## 4. Basic Optical Constants (schematic)\n\n- Cornea radius of curvature \u2248 7.8 mm\n- Entrance pupil = virtual image of the real iris aperture as seen through the cornea\n\nThese values are population averages used in schematic eye models. Individual eyes vary.\n\n---\n\nAll formulas above are geometry and optics only.  \nThey invent nothing beyond the recorded models.  \nThey do not claim to read minds, detect deception, or replace judgment.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:08:05+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "161842c0b41d51b572084b171ce4548cd93a5f1800f75092b5d1d8fd7ccd3d6e",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "655df2ca7771702fd3628a65bfa49c18365a7933",
+    "default_branch": "main",
+    "description": "Recovery README and session continuity for TRU work. Source-bound. A gap stays a gap.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-26T01:29:08Z",
+    "ref": "main",
+    "repo": "tru-recovery",
+    "topics": [],
+    "tree_sha": "dab248b041f9ec5fc6c08630e265737f81017c48",
+    "url": "https://github.com/splashdown1/tru-recovery"
+  },
+  "stats": {
+    "by_kind": {
+      "doc": 5,
+      "readme": 2
+    },
+    "bytes": 10339,
+    "files": 7,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

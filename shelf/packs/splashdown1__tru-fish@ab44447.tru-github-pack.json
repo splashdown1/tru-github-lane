@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "07aab8d5bad1ab166d9c687fcaf797489e25fe8e",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "755c964934c44292c756ca72c5881e522448bb97135120398812c4b5ca1d42a9",
+      "size": 260,
+      "text": "# TRU FISH\n\nFM 21-76. Fish where they gather, or in a run. Line from cloth threads in groups of three, or a shoelace, or suspension line. Bait from fish guts, kept moving. A light at night and shade in the day draw them. Teeth and spines cut. Poison is a gap.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:55+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "0387d8c938ea9ef62e709315c44b331088c0c6c2b2f7ec3e017ec8b8547a335b",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "ab4444740a06cd0f743019115602722c6af619d2",
+    "default_branch": "main",
+    "description": "TRU FISH \u2014 where they hold, bait, line. FM 21-76. No poison.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T22:37:40Z",
+    "ref": "main",
+    "repo": "tru-fish",
+    "topics": [],
+    "tree_sha": "06a008725d4ba17089e64939482b8935fc849943",
+    "url": "https://github.com/splashdown1/tru-fish"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 260,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

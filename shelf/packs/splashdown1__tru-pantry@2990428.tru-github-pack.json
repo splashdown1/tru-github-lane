@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "87ef84af3cb662ebb0d60e4325cf5bc295cab4f5",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "347f5f4e41763cfc776f11dd8800da3cb18e5df17e295a5097764144f624cd25",
+      "size": 1073,
+      "text": "# TRU PANTRY\n\nOffline, non-LLM **canning card**. One HTML file. No accounts, no telemetry, no generated process times.\n\n**Live app (after Pages is on, branch main / root):** https://splashdown1.github.io/tru-pantry/\n\nLifeline keeps a body through the first days. Pantry is how food lasts after that, using only published USDA figures.\n\n## Law\n\n- Low-acid foods are pressure-canner only. A boiling-water bath is not a substitute.\n- Packed minutes are the USDA 0\u20131,000 ft column.\n- Boiling-water altitude step: +5 / +10 / +15 / +20 minutes across the Guide's elevation bands. Pressure canning raises pounds, not minutes.\n- A food with no packed entry is a gap. The page will not invent a salsa or a family recipe.\n- Bulge, spurt, mold, off smell: do not taste.\n\n## Sources\n\nUSDA Complete Guide to Home Canning, as reprinted by the National Center for Home Food Preservation and University of Minnesota Extension canning tables. Tomato acidification is the Guide's bottled-lemon-juice / citric-acid rule.\n\nOpen `index.html` in any browser. Altitude is stored on the device.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:43+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "bf6bf50e62db6623cfbba98c875a54608faf46286723640b8ae9e1b0b7b615f1",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "299042835ea6419c3124389c3e592a367dc374a3",
+    "default_branch": "main",
+    "description": "TRU PANTRY \u2014 offline, non-LLM USDA canning card. Process times and altitude rules only. Single HTML, zero network.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-02T18:07:12Z",
+    "ref": "main",
+    "repo": "tru-pantry",
+    "topics": [],
+    "tree_sha": "187f402276d62d91cafc8083ee88bdbcbeea62e7",
+    "url": "https://github.com/splashdown1/tru-pantry"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 1073,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

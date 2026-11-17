@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "b2b3a9e326fe659d5ee1a2872ac32846c9c9d9de",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "0d52e3c7f6bbd8e24fed2dc1f38aefd60c8261d620cbbdd7979a4328680f32ed",
+      "size": 162,
+      "text": "# TRU PRAYER\n\nFixed KJV texts only: Lord\u2019s Prayer, Psalm 23, Psalm 91, and selected short passages.\n\nNo generation. A missing text is a gap. Public domain KJV.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:41+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "ebc9af2f8abebb50f682554150195391ee0c05a9a5794e0fc046cba7c506fb5c",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "56a972761b6a7f05d6ca8e4f419b75cc06efaad6",
+    "default_branch": "main",
+    "description": "TRU PRAYER \u2014 fixed KJV texts only. Lord\u2019s Prayer, Psalm 23, Psalm 91, short passages. No generation. A gap stays a gap.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-31T01:13:59Z",
+    "ref": "main",
+    "repo": "tru-prayer",
+    "topics": [],
+    "tree_sha": "25a7910d43c6d3594f04e615cff92dc8185ffb01",
+    "url": "https://github.com/splashdown1/tru-prayer"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 162,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

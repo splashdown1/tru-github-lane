@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "git_sha": "932a80a39a5879c6c9a27a4ca9a6d468f53be33a",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "0f7900f5f31544c9352b6ffd065165ecf78a3a7729f4cfcd2b956cb79c584374",
+      "size": 10342,
+      "text": "<div align=\"center\">\n\n# TRU\n\n**A private, offline-first Bible study and sovereign intelligence engine.**\n\n**Truth is constant. Perspective is fluid.**\n\n[![Offline](https://img.shields.io/badge/runtime-offline--first-111827)](#privacy-and-sovereignty)\n[![KJV](https://img.shields.io/badge/scripture-complete%20KJV-7c2d12)](#what-is-included)\n[![No cloud](https://img.shields.io/badge/cloud-processing-none-166534)](#privacy-and-sovereignty)\n\n</div>\n\n---\n\n## Start here\n\nThe current public build is the shelf, not the old monorepo.\n\n- Shelf: [tru-shelf](https://github.com/splashdown1/tru-shelf) \u2014 https://splashdown1.github.io/tru-shelf/\n- Door: [tru-door](https://github.com/splashdown1/tru-door) \u2014 routes the ask to the ship that holds the card\n- Search: [tru-search-engine](https://github.com/splashdown1/tru-search-engine) \u2014 local knowledge index (BM25, notes, graph). Import packs offline.\n- Scripture engine: [tru-canonbound](https://github.com/splashdown1/tru-canonbound) \u2014 31,100 KJV verses, Strong's, Thayer, BDB, Treasury, Nave's, Torrey. A miss stays a gap.\n- Survival and first aid: [tru-lifeline](https://github.com/splashdown1/tru-lifeline) \u2014 FM 21-76 (1970) and FM 21-11 (1976).\n\nEach lane is one HTML file. Save it. If it needs a network to run, it is not a lane.\n\n**Internet without internet:** Shelf catalogs. Door routes. Search indexes. Lanes hold the cards. Rules bind the law. Save the files; the radio can be off.\n\nRules, Door, Join, Radio, and Harbor are public and are not lanes. Rival is not on the shelf. Sight is pinned and not built.\n\n`tru-offline` and `tru-universe` are archived. They are lineage, not the release. Phase 27 and the APEX files below are the same: preserved, not current.\n\n---\n\n## Summary\n\nTRU is a sovereign, offline-first Bible study companion and local intelligence engine. It is designed to run from a downloaded file in a modern browser, without an account, subscription, cloud service, API key, or recurring fee.\n\nAsk questions in plain language, look up any passage in the complete 31,100-verse King James Bible, explore linked themes and doctrines, compare related Scripture witnesses, follow study threads, and read continuously from any starting point. TRU keeps the work on the device instead of sending questions and history to a remote AI service.\n\nTRU is not a generic chatbot and it is not only a keyword search box. It is a family of self-contained browser engines, build systems, research layers, and archived experiments developed around local knowledge, Scripture retrieval, transparent source labels, and portable memory.\n\n## What is included\n\nThe mature TRU study builds can include:\n\n- Complete KJV Scripture with verse and chapter lookup\n- A local knowledge graph connecting themes, doctrines, characters, decisions, and passages\n- Conversational study routing for Scripture, doctrine, definitions, Strong's terms, commentary, calculations, and knowledge gaps\n- Continuous reading mode from a chosen passage through Revelation\n- Book-change announcements without interrupting every verse with chapter references\n- Related Scripture witnesses for comparison\n- Persistent browser-local memory for recent questions and study threads\n- Progressive follow-ups that add context instead of repeating the same answer\n- Confidence and source labels distinguishing Scripture, local study material, and interpretation\n- Matthew Henry and other historical commentary layers in the larger builds\n- Greek and Hebrew study support through Strong's lexicon data where included in a specific build\n- A polysemic PaRDeS study layer in the APEX9 lineage, presenting PESHAT, REMEZ, DERASH, and SOD readings\n- Local audit, provenance, state, council, graph, teaching, export, and memory workflows in the phase builds\n- No telemetry, cloud processing, or external runtime dependency in the offline contract\n\nThe exact feature set depends on the build. Larger files contain more material but are not automatically better for every device or use case.\n\n## Available versions\n\nTRU has a preserved lineage of **103 tracked HTML files**, **5 ZIP bundles**, and many source, data, test, and build files in the private development monorepo. The number refers to preserved artefacts, not 103 separate polished products. Some are historical prototypes, specialised tools, experimental candidates, or build outputs.\n\nThe most useful groups are:\n\n| Family | What it is | Examples |\n|---|---|---|\n| **Canonical offline host** | The maintained baseline built from a reproducible source tree | `Projects/TRU/current/index.html` \u2014 Phase 27 host, 30,745 embedded nodes |\n| **Phase builds** | Structured development milestones with increasing local graph, council, and state features | Phase 27, Phase 28 Knowledge Graph, Phase 29 Council, Phase 30 Recursive Council |\n| **Sovereign / APEX lineage** | Large single-file study engines combining Scripture, local brain data, dictionaries, lexicons, commentary, and routing | `TRU_SOVEREIGN`, `TRU_COMPLETE`, `TRU_APEX7`\u2013`TRU_APEX10` |\n| **Max-content bundles** | Compressed distributions for larger research libraries | `TRU_APEX_MAX.zip`, `TRU_APEX_MAX_POLYSEM.zip`, `TRU_APEX_ULTIMATE.zip` |\n| **Specialised builds** | Smaller, focused, or differently presented tools | `TRU_APEX_LITE`, `TRU_DICTIONARY`, `Scripture_Seeker`, `TRU_GHOST`, `TRU_MOBILE` |\n| **COIL / Pastoral / Logos / Holographic branches** | Distinct experimental interfaces and identity or reasoning directions | `TRU_COIL`, `TRU-PASTORAL`, `TRU_LOGOS`, `TRU_HOLO`, `TRU_SUPER` |\n| **Archives and public ghosts** | Frozen lineage, recovery copies, and portable snapshots | `archive/legacy-root-builds`, `tru-ghost-public`, `Projects/TRU/ship` |\n\n### The current canonical baseline\n\nThe Phase 27 build at `Projects/TRU/current/index.html` was the release baseline for the old source tree. As of 3 October 2026 it is lineage. The public baseline is Canonbound, reached from the shelf. Phase 27 remains self-contained and offline, with 30,745 local knowledge nodes and the KJV Scripture layer, but it is not the door.\n\nPhase 28 and Phase 29 are preserved candidate branches that add a larger knowledge graph and a deterministic local council. Phase 30 is an active recursive-council development line, not a claim that every experimental branch is production-ready.\n\nThe larger APEX builds and later experimental files are preserved for research, comparison, and future release decisions. They should be described as candidates or experiments unless a release note explicitly promotes them.\n\n## How TRU works\n\nAt a high level, a question moves through local routing rather than being sent to a cloud model:\n\n1. The browser opens the self-contained application.\n2. The local router identifies the kind of request: Scripture, doctrine, definition, lexicon, commentary, calculation, or gap.\n3. TRU retrieves from embedded local data and Scripture indexes.\n4. The response shows its source or confidence class where the build supports those labels.\n5. Follow-up questions can use browser-local memory and the current study thread.\n6. The user can audit, export, reset, or continue the session locally.\n\nThe architecture favours files and portable artefacts: HTML for a complete offline application, JSON for local data, Python builders for reproducible assembly, and browser storage for personal session state.\n\n## Try it\n\nOpen the shelf, then Canonbound or Search. Example prompts:\n\n```text\nPsalm 23\nWhat is faith without works?\nJohn 3:16\nsearch knowledge gap\n```\n\nDownload a chosen HTML build, open it in a modern browser, and study locally. No installation is required for the single-file builds.\n\n## Privacy and sovereignty\n\nTRU's offline contract is intentionally strict:\n\n- no account required\n- no subscription required\n- no API key required\n- no telemetry in the offline host\n- no cloud processing for local questions\n- no recurring fees\n- Scripture, study data, questions, and local history remain in the downloaded application and browser storage\n- the files can be copied, archived, inspected, or run without a hosted service\n\nThis overview repository does not contain the complete TRU engine source or distribution files. It contains this README as the public explanation. The implementation a person can run is on the shelf, Door, Search, Canonbound, and Lifeline.\n\n## Honest boundaries\n\nTRU is a study companion. It presents Scripture references and labels interpretation where the selected build supports that distinction. It is not a replacement for prayer, personal study, Christian community, pastoral counsel, medical care, or emergency support.\n\nNot every preserved version has the same evidence level, feature set, or release status. A version number, larger file size, or more extensive data layer does not by itself make a build canonical. Provenance and regression status matter.\n\nSome historical files in the development archive have unresolved source provenance. They should not be marketed as authoritative translations or as fully verified releases without a corresponding audit.\n\n## Project structure\n\nThe public surface is:\n\n- `tru-shelf` \u2014 catalog of lanes\n- `tru-door` \u2014 routes the ask\n- `tru-search-engine` \u2014 local knowledge index\n- `tru-canonbound` \u2014 scripture engine\n- `tru-lifeline` \u2014 survival and first aid\n- one repository per lane card\n\nThe old development monorepo, now archived, was organised around:\n\n- `Projects/TRU/current/` \u2014 former Phase 27 host\n- `Projects/TRU/phase28/`, `phase29/`, and `phase30/` \u2014 milestone branches\n- `Projects/TRU/build-scripts/` \u2014 reproducible builders and patches\n- `Projects/TRU/data/` \u2014 Scripture, brain, dictionary, lexicon, and cross-reference inputs\n- `Projects/TRU/versions/` \u2014 preserved named engine variants\n- `archive/legacy-root-builds/` \u2014 older large-build lineage\n- `tru-ghost-public/` \u2014 ghost/export variants\n\n## Licence and status\n\nTRU is an evolving personal project. Individual files may carry different licence notices or source obligations; inspect the distribution's included licence and attribution files before redistributing a build. The public overview is descriptive, not a grant of rights to every private or third-party data layer.\n\nBuilt by Joe (Splashdown) and TRU.\n\n---\n\n<div align=\"center\">\n\n**One download. No account. No cloud. Scripture in your hands.**\n\n</div>\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:07:29+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "2ede1099075c38f9132ddba1696eb0b72c9c29141014d233227123ff764342fe",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "42b4d9959b406c3d12af239e3de2bddeaa8d8c8b",
+    "default_branch": "main",
+    "description": "TRU public overview \u2014 entry point into the TRU sovereign offline engine family.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-22T18:19:52Z",
+    "ref": "main",
+    "repo": "tru-overview",
+    "topics": [
+      "documentation",
+      "overview",
+      "sovereign-ai"
+    ],
+    "tree_sha": "85cd93744270dc3f9e13238c575bbeac6559bfdf",
+    "url": "https://github.com/splashdown1/tru-overview"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 10342,
+    "files": 1,
+    "noise_counts": {},
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}

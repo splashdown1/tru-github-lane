@@ -1,0 +1,62 @@
+{
+  "files": [
+    {
+      "git_sha": "662ffcfde6d6babdd4e36b9d326dd750f746530e",
+      "kind": "readme",
+      "lang": "md",
+      "path": "README.md",
+      "sha256": "e886d8d1dba597030f3575ff45bcf9936eb6334722c0a217d550caac2e26cf87",
+      "size": 318,
+      "text": "# TRU PLACE\n\nType a packed city. Get the coordinate. Not a map.\n\nThe list is Natural Earth populated places, 1:10m, public domain. Major cities and significant towns. A name not in the list is not packed. No roads. No live pin.\n\nSave `index.html`. Open it in a browser. If it needs a network to run, it is not a lane.\n"
+    }
+  ],
+  "generated_at": "2026-11-12T03:08:01+00:00",
+  "generator": {
+    "name": "github_pull.py",
+    "version": "2.1.0"
+  },
+  "pack_digest": "df49136d7b841392e6cdfee61bf68a82933e3a33fc7b2542007be0b16c6ad8da",
+  "provenance": {
+    "api_base": "https://api.github.com",
+    "authenticated": true,
+    "limits": {
+      "exclude": [],
+      "include": [],
+      "max_file_kb": 256,
+      "max_total_mb": 8.0
+    },
+    "method": "github-rest-api+raw",
+    "raw_base": "https://raw.githubusercontent.com",
+    "tree_truncated": false
+  },
+  "schema": "tru-github-pack",
+  "skipped": [],
+  "source": {
+    "archived": false,
+    "commit_sha": "f5cef5cfbeca60938cd2fc59da5ee67e12f68193",
+    "default_branch": "main",
+    "description": "TRU PLACE \u2014 type a packed city, get the coordinate. Not a map.",
+    "fork": false,
+    "license": null,
+    "owner": "splashdown1",
+    "pushed_at": "2026-10-03T03:16:51Z",
+    "ref": "main",
+    "repo": "tru-place",
+    "topics": [],
+    "tree_sha": "50da8877563d14be0db2bc2d2258014665a9e0f4",
+    "url": "https://github.com/splashdown1/tru-place"
+  },
+  "stats": {
+    "by_kind": {
+      "readme": 1
+    },
+    "bytes": 318,
+    "files": 1,
+    "noise_counts": {
+      "code-or-other": 1
+    },
+    "skipped_listed": 0
+  },
+  "version": "2.1.0",
+  "warnings": []
+}
